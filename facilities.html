@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Facilities at Fitness Club Tarsadi, Kosamba — Strength training equipment, cardio machines, and free weights.">
+  <title>Facilities | Fitness Club Tarsadi — Kosamba</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/></svg>
+      </div>
+      <div><div class="nav-logo-text">FITNESS CLUB</div><div class="nav-logo-sub">TARSADI</div></div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html"       class="nav-link">Home</a>
+      <a href="about.html"       class="nav-link">About</a>
+      <a href="facilities.html"  class="nav-link active">Facilities</a>
+      <a href="membership.html"  class="nav-link">Membership</a>
+      <a href="gallery.html"     class="nav-link">Gallery</a>
+      <a href="contact.html"     class="nav-link">Contact</a>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <a href="admin/login.html" class="nav-link admin-link">Admin</a>
+    </div>
+    <div class="nav-actions">
+      <a href="contact.html" class="nav-cta">Enquire Now</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html"       class="nav-link">Home</a>
+  <a href="about.html"       class="nav-link">About</a>
+  <a href="facilities.html"  class="nav-link active">Facilities</a>
+  <a href="membership.html"  class="nav-link">Membership</a>
+  <a href="gallery.html"     class="nav-link">Gallery</a>
+  <a href="contact.html"     class="nav-link">Contact</a>
+  <a href="admin/login.html" class="nav-link admin-link">Admin</a>
+</div>
+
+<main>
+  <section class="page-hero">
+    <div class="page-hero-bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="section-label" aria-hidden="true">Gym Equipment</div>
+      <h1 class="page-hero-title">Our Facilities</h1>
+      <p class="page-hero-subtitle">Dedicated equipment and space to support strength training, cardio conditioning, and physical fitness.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="facilities-heading">
+    <div class="container">
+      <div class="section-header centered">
+        <div class="section-label" aria-hidden="true">Training Equipment</div>
+        <h2 class="section-title" id="facilities-heading">Workout Equipment & Zones</h2>
+        <p class="section-subtitle">
+          Our facility is equipped with strength training equipment, free weights, and cardio machines for members in Kosamba.
+        </p>
+      </div>
+
+      <div class="facilities-grid" id="facilities-full-grid">
+        <!-- Rendered by JS -->
+      </div>
+
+      <div style="text-align:center; margin-top:var(--space-8);">
+        <a href="contact.html" class="btn btn-primary btn-lg">Enquire About Facilities</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hours section -->
+  <section class="section" style="background:var(--bg-canvas); border-top:1px solid var(--border-light);" aria-labelledby="hours-fac-heading">
+    <div class="container" style="max-width:700px;">
+      <div class="section-header centered">
+        <div class="section-label" aria-hidden="true">Timings</div>
+        <h2 class="section-title" id="hours-fac-heading">Operating Hours</h2>
+      </div>
+      <div class="hours-grid" id="hours-grid-fac">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-section" aria-labelledby="facilities-cta">
+    <div class="container">
+      <h2 class="cta-title" id="facilities-cta">Visit Fitness Club Tarsadi</h2>
+      <p class="cta-subtitle">Visit our gym or submit an inquiry to learn more about our equipment and training environment.</p>
+      <div class="cta-actions" style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap;">
+        <a href="contact.html"    class="btn btn-primary btn-lg">Enquire Now</a>
+        <a href="membership.html" class="btn btn-secondary btn-lg">View Plans</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Fitness Club Tarsadi. All rights reserved. Pgp Township, Tarsadi, Kosamba, Gujarat 394120.</p>
+      <div class="footer-bottom-links">
+        <a href="index.html"      class="footer-bottom-link">Home</a>
+        <a href="membership.html" class="footer-bottom-link">Membership</a>
+        <a href="contact.html"    class="footer-bottom-link">Contact</a>
+        <a href="admin/login.html" class="footer-bottom-link">Admin Login</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/navigation.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const grid = document.getElementById('facilities-full-grid');
+  if (grid) {
+    grid.innerHTML = GYM_CONFIG.facilities.map(f => `
+      <div class="facility-card fade-up">
+        <div class="facility-icon" aria-hidden="true">${f.icon}</div>
+        <div class="facility-name">${f.name}</div>
+        <div class="facility-desc">${f.description}</div>
+      </div>
+    `).join('');
+  }
+
+  const hoursGrid = document.getElementById('hours-grid-fac');
+  if (hoursGrid) {
+    hoursGrid.innerHTML = GYM_CONFIG.openingHours.map(h => `
+      <div class="hour-item">
+        <span class="hour-day">${h.day}</span>
+        <span class="hour-time">${h.time}</span>
+      </div>
+    `).join('');
+  }
+
+  document.querySelectorAll('.fade-up').forEach(el => {
+    const obs = new IntersectionObserver(e => { e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); }); }, { threshold: 0.1 });
+    obs.observe(el);
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Member Profile | Fitness Club Tarsadi Admin</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body class="admin-body">
+
+<aside class="sidebar" id="sidebar" role="navigation" aria-label="Admin sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">G</div>
+      <div>
+        <div class="sidebar-logo-text">FITNESS CLUB TARSADI</div>
+        <div class="sidebar-logo-sub">Admin Panel</div>
+      </div>
+    </div>
+    <button class="sidebar-close" id="sidebar-close" aria-label="Close sidebar">✕</button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-section-label">MAIN</div>
+    <a href="dashboard.html"  class="sidebar-item" id="nav-dashboard">Dashboard</a>
+
+    <div class="sidebar-section-label">MEMBERS</div>
+    <a href="members.html"    class="sidebar-item active" id="nav-members">Members</a>
+    <a href="attendance.html" class="sidebar-item" id="nav-attendance">Attendance</a>
+
+    <div class="sidebar-section-label">FINANCE</div>
+    <a href="fees.html"       class="sidebar-item" id="nav-fees">Fees & Pending</a>
+    <a href="payments.html"   class="sidebar-item" id="nav-payments">Payments</a>
+    <a href="receipts.html"   class="sidebar-item" id="nav-receipts">Receipts</a>
+
+    <div class="sidebar-section-label">REPORTING</div>
+    <a href="reports.html"    class="sidebar-item" id="nav-reports">Monthly Reports</a>
+
+    <div class="sidebar-section-label">COMMUNICATION</div>
+    <a href="inquiries.html"  class="sidebar-item" id="nav-inquiries">Inquiries</a>
+
+    <div class="sidebar-section-label">SYSTEM</div>
+    <a href="settings.html"   class="sidebar-item" id="nav-settings">Settings</a>
+    <a href="../index.html"   class="sidebar-item" target="_blank">View Website</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="admin-profile">
+      <div class="admin-avatar" aria-hidden="true">AD</div>
+      <div class="admin-profile-info">
+        <div class="admin-profile-name">Admin</div>
+        <div class="admin-profile-role">Gym Manager</div>
+      </div>
+    </div>
+    <button class="sidebar-item" data-logout style="color: var(--danger);">
+      Logout
+    </button>
+  </div>
+</aside>
+<div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+<div class="admin-main">
+  <header class="admin-topbar" role="banner">
+    <div class="topbar-left">
+      <button class="topbar-menu-btn" id="topbar-menu-btn" aria-label="Open sidebar">☰</button>
+      <div>
+        <div class="topbar-title">Member Profile</div>
+        <div class="topbar-subtitle"><a href="members.html" style="color:var(--text-muted); text-decoration:underline;">← Back to Members</a></div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="demo-badge" role="status"><span class="demo-dot" aria-hidden="true"></span>DEMO MODE</div>
+    </div>
+  </header>
+
+  <main class="admin-content" id="profile-content">
+    <div class="empty-state" style="min-height: 50vh;">
+      <span class="empty-state-icon" aria-hidden="true">⏳</span>
+      <h3>Loading member…</h3>
+    </div>
+  </main>
+</div>
+
+<!-- Receipt Modal -->
+<div class="modal-backdrop" id="receipt-modal" role="dialog" aria-modal="true" aria-labelledby="receipt-modal-title">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h2 class="modal-title" id="receipt-modal-title">🧾 Receipt</h2>
+      <button class="modal-close" data-modal-close aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="receipt-content"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary btn-sm" data-modal-close>Close</button>
+      <button class="btn btn-secondary btn-sm" onclick="printReceipt()">🖨️ Print</button>
+      <button class="btn btn-primary btn-sm" onclick="showToast('Demo: Email client would open here. Real email sending requires SMTP integration (Phase 2).', 'info', 'Demo Mode')">
+        ✉️ Email Receipt
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- WhatsApp Modal -->
+<div class="modal-backdrop" id="whatsapp-modal" role="dialog" aria-modal="true">
+  <div class="modal modal-sm">
+    <div class="modal-header"><h2 class="modal-title">💬 WhatsApp Reminder</h2><button class="modal-close" data-modal-close aria-label="Close">✕</button></div>
+    <div class="modal-body">
+      <div class="whatsapp-header"><div class="whatsapp-icon" aria-hidden="true">W</div><div><div style="font-weight:600;" id="wa-member-name">—</div><div style="font-size:var(--font-xs);color:var(--text-muted);" id="wa-member-phone">—</div></div></div>
+      <div class="whatsapp-preview" id="wa-message"></div>
+      <div class="card" style="background:var(--warning-subtle);border-color:rgba(245,158,11,0.3);padding:var(--space-4);font-size:var(--font-xs);color:var(--text-secondary);">
+        ⚠️ <strong>Demo Mode:</strong> Opens WhatsApp. Real automated sending requires WhatsApp Business API (Phase 2).
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary btn-sm" data-modal-close>Cancel</button>
+      <a href="#" id="wa-send-btn" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Open WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/admin.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const params   = new URLSearchParams(window.location.search);
+  const memberId = params.get('id');
+  const members  = getMembers();
+  const member   = members.find(m => m.id === memberId);
+  const content  = document.getElementById('profile-content');
+
+  if (!member) {
+    content.innerHTML = `<div class="empty-state" style="min-height:50vh;">
+      <span class="empty-state-icon" aria-hidden="true">❌</span>
+      <h3>Member Not Found</h3>
+      <p>Member ID "${memberId}" does not exist.</p>
+      <a href="members.html" class="btn btn-primary">Back to Members</a>
+    </div>`;
+    return;
+  }
+
+  const att      = getAttendanceStats(member.id);
+  const payments = getPaymentsByMember(member.id);
+  const paidTotal = payments.filter(p => p.status === 'Paid').reduce((s, p) => s + p.amount, 0);
+  const pendingTotal = payments.filter(p => p.status !== 'Paid').reduce((s, p) => s + p.amount, 0);
+  const lastPay  = payments.filter(p => p.status === 'Paid').pop();
+  const days     = getDaysUntilExpiry(member.expiryDate);
+  const feeCls   = member.feeStatus === 'Paid' ? 'success' : member.feeStatus === 'Overdue' ? 'danger' : 'warning';
+  const statCls  = member.status === 'Active' ? 'success' : member.status === 'Expired' ? 'danger' : 'warning';
+
+  document.title = `${member.name} — Fitness Club Tarsadi Admin`;
+
+  content.innerHTML = `
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <div class="profile-avatar-lg" aria-hidden="true">${getInitials(member.name)}</div>
+      <div style="flex:1; min-width:0;">
+        <div class="profile-meta-name">${member.name}</div>
+        <div class="profile-meta-id">${member.id} · Joined ${formatDate(member.joinDate)}</div>
+        <div class="profile-tags">
+          <span class="badge badge-${statCls}">${member.status}</span>
+          <span class="badge badge-${feeCls}">${member.feeStatus}</span>
+          <span class="badge badge-neutral">${member.membership}</span>
+          ${days !== null && days >= 0 && days <= 30 ? `<span class="badge badge-warning">Expires in ${days}d</span>` : ''}
+        </div>
+      </div>
+      <div class="profile-actions">
+        <button class="btn btn-secondary btn-sm" onclick="openWAModal('${member.id}')">💬 WhatsApp</button>
+        <button class="btn btn-secondary btn-sm" onclick="showToast('Demo: Email client would open. Real email requires SMTP integration.', 'info', 'Demo Mode')">✉️ Email</button>
+        <button class="btn btn-primary btn-sm"   onclick="openReceiptModal('${member.id}')">🧾 View Receipt</button>
+      </div>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="mini-stats-grid">
+      <div class="mini-stat">
+        <div class="mini-stat-value" style="color:var(--success);">${att.present}</div>
+        <div class="mini-stat-label">Days Present</div>
+      </div>
+      <div class="mini-stat">
+        <div class="mini-stat-value" style="color:var(--danger);">${att.absent}</div>
+        <div class="mini-stat-label">Days Absent</div>
+      </div>
+      <div class="mini-stat">
+        <div class="mini-stat-value" style="color:${att.percentage < 50 ? 'var(--danger)' : 'var(--accent)'};">${att.percentage}%</div>
+        <div class="mini-stat-label">Attendance</div>
+      </div>
+      <div class="mini-stat">
+        <div class="mini-stat-value" style="color:var(--success);">${formatCurrency(paidTotal)}</div>
+        <div class="mini-stat-label">Total Paid</div>
+      </div>
+    </div>
+
+    <!-- Profile Tabs -->
+    <div class="profile-tabs" role="tablist">
+      <button class="profile-tab active" role="tab" aria-selected="true"  onclick="switchTab(this,'tab-info')">Personal Info</button>
+      <button class="profile-tab"         role="tab" aria-selected="false" onclick="switchTab(this,'tab-attendance')">Attendance</button>
+      <button class="profile-tab"         role="tab" aria-selected="false" onclick="switchTab(this,'tab-payments')">Payment History</button>
+    </div>
+
+    <!-- Tab: Personal Info -->
+    <div class="profile-tab-content active" id="tab-info">
+      <div class="info-grid">
+        ${[
+          ['Full Name',      member.name],
+          ['Member ID',      member.id],
+          ['Phone',          member.phone],
+          ['Email',          member.email || '—'],
+          ['Gender',         member.gender],
+          ['Age',            member.age + ' years'],
+          ['Blood Group',    member.bloodGroup || '—'],
+          ['Address',        member.address || '—'],
+          ['Emergency Contact', member.emergencyContact || '—'],
+          ['Membership Plan', member.membership],
+          ['Join Date',      formatDate(member.joinDate)],
+          ['Expiry Date',    formatDate(member.expiryDate) + (days !== null ? (days >= 0 ? ` (${days} days remaining)` : ' (Expired)') : '')],
+          ['Fee Status',     member.feeStatus],
+          ['Member Status',  member.status],
+        ].map(([label, value]) => `
+          <div class="info-item">
+            <div class="info-item-label">${label}</div>
+            <div class="info-item-value">${value}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <!-- Tab: Attendance -->
+    <div class="profile-tab-content" id="tab-attendance">
+      <div class="data-table-wrapper">
+        <div class="data-table-header">
+          <div class="data-table-title">Attendance Records (Last 30 Days)</div>
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Check In</th>
+                <th>Check Out</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${(function() {
+                const records = getAttendance().filter(r => r.memberId === member.id)
+                  .sort((a, b) => b.date.localeCompare(a.date)).slice(0, 30);
+                if (records.length === 0) return `<tr><td colspan="4"><div class="empty-state"><span class="empty-state-icon" aria-hidden="true">📅</span><h3>No Attendance Records</h3></div></td></tr>`;
+                return records.map(r => `
+                  <tr>
+                    <td>${formatDate(r.date)}</td>
+                    <td>${r.checkIn}</td>
+                    <td>${r.checkOut}</td>
+                    <td><span class="badge badge-success">Present</span></td>
+                  </tr>
+                `).join('');
+              })()}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab: Payments -->
+    <div class="profile-tab-content" id="tab-payments">
+      <div class="mini-stats-grid" style="margin-bottom: var(--space-5);">
+        <div class="mini-stat"><div class="mini-stat-value" style="color:var(--success);">${formatCurrency(paidTotal)}</div><div class="mini-stat-label">Total Paid</div></div>
+        <div class="mini-stat"><div class="mini-stat-value" style="color:var(--warning);">${formatCurrency(pendingTotal)}</div><div class="mini-stat-label">Pending</div></div>
+        <div class="mini-stat"><div class="mini-stat-value">${lastPay ? formatDate(lastPay.date) : '—'}</div><div class="mini-stat-label">Last Payment</div></div>
+        <div class="mini-stat"><div class="mini-stat-value">${formatDate(member.expiryDate)}</div><div class="mini-stat-label">Next Due</div></div>
+      </div>
+      <div class="data-table-wrapper">
+        <div class="data-table-header">
+          <div class="data-table-title">Payment History</div>
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Receipt #</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Method</th>
+                <th>Plan</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${payments.length === 0
+                ? `<tr><td colspan="7"><div class="empty-state"><span class="empty-state-icon" aria-hidden="true">💳</span><h3>No Payment Records</h3></div></td></tr>`
+                : payments.map(p => `
+                  <tr>
+                    <td style="font-family:monospace; font-size:var(--font-xs);">${p.id}</td>
+                    <td>${formatDate(p.date)}</td>
+                    <td style="font-weight:700; color:var(--text-primary);">${formatCurrency(p.amount)}</td>
+                    <td>${p.method || '—'}</td>
+                    <td>${p.plan}</td>
+                    <td><span class="badge badge-${p.status === 'Paid' ? 'success' : p.status === 'Overdue' ? 'danger' : 'warning'}">${p.status}</span></td>
+                    <td>
+                      ${p.status === 'Paid'
+                        ? `<button class="action-btn" onclick="openReceiptModal('${member.id}', '${p.id}')" title="View Receipt" aria-label="View receipt ${p.id}">🧾</button>`
+                        : `<button class="action-btn whatsapp" onclick="openWAModal('${member.id}')" title="Send Reminder" aria-label="Send reminder">💬</button>`
+                      }
+                    </td>
+                  </tr>
+                `).join('')
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Tab switching
+  window.switchTab = function(btn, tabId) {
+    document.querySelectorAll('.profile-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+    document.querySelectorAll('.profile-tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+    document.getElementById(tabId)?.classList.add('active');
+  };
+
+  // WhatsApp
+  window.openWAModal = function(mId) {
+    const m = members.find(x => x.id === mId);
+    if (!m) return;
+    const p = getPayments().find(x => x.memberId === mId && (x.status === 'Pending' || x.status === 'Overdue'));
+    const msg = `Hello ${m.name},\n\nYour gym membership fee of ${p ? formatCurrency(p.amount) : '₹XXXX'} is currently *${p?.status || 'Pending'}*.\n\n📅 Due Date: ${p ? formatDate(p.dueDate) : 'As per plan'}\n🏋️ Plan: ${m.membership}\n\nPlease complete your payment at your earliest convenience.\n\nThank you.\n— Fitness Club Tarsadi`;
+    document.getElementById('wa-member-name').textContent  = m.name;
+    document.getElementById('wa-member-phone').textContent = m.phone;
+    document.getElementById('wa-message').textContent = msg;
+    document.getElementById('wa-send-btn').href = `https://wa.me/${m.phone}?text=${encodeURIComponent(msg)}`;
+    openModal('whatsapp-modal');
+  };
+
+  // Receipt
+  window.openReceiptModal = function(mId, receiptId) {
+    const m = members.find(x => x.id === mId);
+    const pays = getPayments().filter(x => x.memberId === mId && x.status === 'Paid');
+    const p = receiptId ? pays.find(x => x.id === receiptId) : pays[pays.length - 1];
+    if (!m || !p) { showToast('No paid receipt found.', 'warning'); return; }
+    const nextDue = m.expiryDate;
+    document.getElementById('receipt-content').innerHTML = `
+      <div class="receipt-preview" id="printable-receipt">
+        <div class="receipt-header">
+          <div class="receipt-gym-name">Fitness Club Tarsadi</div>
+          <div class="receipt-gym-sub">Fitness Club · Kosamba, Gujarat</div>
+        </div>
+        <div class="receipt-number">
+          <span class="receipt-number-label">Receipt Number</span>
+          <span class="receipt-number-value">${p.id}</span>
+        </div>
+        ${[
+          ['Member Name',      m.name],
+          ['Member ID',        m.id],
+          ['Membership Plan',  p.plan],
+          ['Payment Date',     formatDate(p.date)],
+          ['Payment Method',   p.method],
+          ['Reference',        p.reference || '—'],
+          ['Next Due Date',    formatDate(nextDue)],
+        ].map(([l, v]) => `
+          <div class="receipt-field">
+            <span class="receipt-field-label">${l}</span>
+            <span class="receipt-field-value">${v}</span>
+          </div>
+        `).join('')}
+        <div class="receipt-total">
+          <span class="receipt-total-label">Amount Paid</span>
+          <span class="receipt-total-value">${formatCurrency(p.amount)}</span>
+        </div>
+        <div class="receipt-footer-text">
+          Thank you for being a valued member of Fitness Club Tarsadi.<br>
+          <span style="font-size:10px; color:#A1A1AA;">Demo Receipt — Not a legally binding document in this phase.</span>
+        </div>
+      </div>
+    `;
+    openModal('receipt-modal');
+  };
+
+  window.printReceipt = function() {
+    const el = document.getElementById('printable-receipt');
+    if (!el) return;
+    const w = window.open('', '_blank');
+    w.document.write(`<!DOCTYPE html><html><head><title>Receipt</title><style>
+      body { font-family: Inter, sans-serif; margin: 0; padding: 24px; background: white; }
+      ${document.querySelector('link[href*="style.css"]')?.sheet?.cssText || ''}
+    </style></head><body>${el.outerHTML}</body></html>`);
+    w.document.close();
+    w.focus();
+    w.print();
+  };
+});
+</script>
+</body>
+</html>

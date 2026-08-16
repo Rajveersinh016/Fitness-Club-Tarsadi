@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Attendance | Fitness Club Tarsadi Admin</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body class="admin-body">
+
+<aside class="sidebar" id="sidebar" role="navigation" aria-label="Admin sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">G</div>
+      <div>
+        <div class="sidebar-logo-text">FITNESS CLUB TARSADI</div>
+        <div class="sidebar-logo-sub">Admin Panel</div>
+      </div>
+    </div>
+    <button class="sidebar-close" id="sidebar-close" aria-label="Close sidebar">✕</button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-section-label">MAIN</div>
+    <a href="dashboard.html"  class="sidebar-item" id="nav-dashboard">Dashboard</a>
+
+    <div class="sidebar-section-label">MEMBERS</div>
+    <a href="members.html"    class="sidebar-item" id="nav-members">Members</a>
+    <a href="attendance.html" class="sidebar-item active" id="nav-attendance">Attendance</a>
+
+    <div class="sidebar-section-label">FINANCE</div>
+    <a href="fees.html"       class="sidebar-item" id="nav-fees">Fees & Pending</a>
+    <a href="payments.html"   class="sidebar-item" id="nav-payments">Payments</a>
+    <a href="receipts.html"   class="sidebar-item" id="nav-receipts">Receipts</a>
+
+    <div class="sidebar-section-label">REPORTING</div>
+    <a href="reports.html"    class="sidebar-item" id="nav-reports">Monthly Reports</a>
+
+    <div class="sidebar-section-label">COMMUNICATION</div>
+    <a href="inquiries.html"  class="sidebar-item" id="nav-inquiries">Inquiries</a>
+
+    <div class="sidebar-section-label">SYSTEM</div>
+    <a href="settings.html"   class="sidebar-item" id="nav-settings">Settings</a>
+    <a href="../index.html"   class="sidebar-item" target="_blank">View Website</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="admin-profile">
+      <div class="admin-avatar" aria-hidden="true">AD</div>
+      <div class="admin-profile-info">
+        <div class="admin-profile-name">Admin</div>
+        <div class="admin-profile-role">Gym Manager</div>
+      </div>
+    </div>
+    <button class="sidebar-item" data-logout style="color: var(--danger);">
+      Logout
+    </button>
+  </div>
+</aside>
+<div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+<div class="admin-main">
+  <header class="admin-topbar" role="banner">
+    <div class="topbar-left">
+      <button class="topbar-menu-btn" id="topbar-menu-btn" aria-label="Open sidebar">☰</button>
+      <div><div class="topbar-title">Attendance</div><div class="topbar-subtitle">Track daily member attendance</div></div>
+    </div>
+    <div class="topbar-right">
+      <div class="demo-badge" role="status"><span class="demo-dot" aria-hidden="true"></span>DEMO MODE</div>
+    </div>
+  </header>
+
+  <main class="admin-content">
+    <!-- Stats -->
+    <div class="attendance-stats">
+      <div class="mini-stat"><div class="mini-stat-value" id="att-total">—</div><div class="mini-stat-label">Total Active Members</div></div>
+      <div class="mini-stat"><div class="mini-stat-value" id="att-present" style="color:var(--success);">—</div><div class="mini-stat-label">Present</div></div>
+      <div class="mini-stat"><div class="mini-stat-value" id="att-pct" style="color:var(--accent);">—</div><div class="mini-stat-label">Attendance %</div></div>
+      <div class="mini-stat"><div class="mini-stat-value" id="att-peak" style="color:var(--info);">—</div><div class="mini-stat-label">Peak Hour</div></div>
+    </div>
+
+    <!-- Chart -->
+    <div class="chart-card" style="margin-bottom: var(--space-5);">
+      <div class="chart-header">
+        <div><div class="chart-title">Weekly Attendance</div><div class="chart-subtitle">Members per day (demo data)</div></div>
+      </div>
+      <div class="chart-svg-container">
+        <svg id="att-chart" class="chart-svg" height="200" aria-label="Attendance bar chart"></svg>
+      </div>
+    </div>
+
+    <!-- Attendance Table -->
+    <div class="data-table-wrapper">
+      <div class="data-table-header">
+        <div class="data-table-title">Attendance Log</div>
+        <div class="data-table-actions">
+          <!-- Period Buttons -->
+          <div class="chart-tabs" role="group" aria-label="Filter by period" style="margin:0;">
+            <button class="period-btn chart-tab active" data-period="today">Today</button>
+            <button class="period-btn chart-tab" data-period="yesterday">Yesterday</button>
+            <button class="period-btn chart-tab" data-period="week">This Week</button>
+            <button class="period-btn chart-tab" data-period="month">This Month</button>
+            <button class="period-btn chart-tab" data-period="custom">Custom Date</button>
+          </div>
+          <div class="table-search" role="search">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="search" id="att-search" placeholder="Search member…" aria-label="Search attendance">
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="exportAttendanceCSV()">📥 Export CSV</button>
+        </div>
+      </div>
+
+      <!-- Custom date row -->
+      <div id="custom-date-row" style="display:none; padding: var(--space-3) var(--space-5);">
+        <label for="custom-date-input" style="font-size:var(--font-sm); color:var(--text-secondary); margin-right:var(--space-3);">Select Date:</label>
+        <input type="date" id="custom-date-input" class="form-input" style="display:inline-block; width:auto;" value="2026-08-15" max="2026-08-15">
+      </div>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Member ID</th>
+              <th>Member Name</th>
+              <th>Date</th>
+              <th>Check In</th>
+              <th>Check Out</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="attendance-tbody">
+            <tr><td colspan="6"><div class="empty-state"><span class="empty-state-icon" aria-hidden="true">⏳</span><h3>Loading…</h3></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="padding: var(--space-3) var(--space-5); font-size: var(--font-xs); color: var(--text-muted); border-top: 1px solid var(--border);">
+        ℹ️ Demo Mode: Attendance is simulated data generated for demonstration. Real data comes from biometric device integration (Phase 2).
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/admin.js"></script>
+<script src="../js/attendance.js"></script>
+<script>
+function exportAttendanceCSV() {
+  const tbody = document.getElementById('attendance-tbody');
+  const rows  = Array.from(tbody.querySelectorAll('tr')).filter(r => r.querySelector('td') && !r.querySelector('.empty-state'));
+  const data  = rows.map(r => {
+    const cells = r.querySelectorAll('td');
+    return [cells[0]?.textContent?.trim(), cells[1]?.querySelector('.member-cell span')?.textContent?.trim(), cells[2]?.textContent?.trim(), cells[3]?.textContent?.trim(), cells[4]?.textContent?.trim(), 'Present'];
+  });
+  exportCSV(['Member ID', 'Name', 'Date', 'Check In', 'Check Out', 'Status'], data, 'attendance-export.csv');
+}
+</script>
+</body>
+</html>

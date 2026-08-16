@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Reports | Fitness Club Tarsadi Admin</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body class="admin-body">
+
+<aside class="sidebar" id="sidebar" role="navigation" aria-label="Admin sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">G</div>
+      <div>
+        <div class="sidebar-logo-text">FITNESS CLUB TARSADI</div>
+        <div class="sidebar-logo-sub">Admin Panel</div>
+      </div>
+    </div>
+    <button class="sidebar-close" id="sidebar-close" aria-label="Close sidebar">✕</button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-section-label">MAIN</div>
+    <a href="dashboard.html"  class="sidebar-item" id="nav-dashboard">Dashboard</a>
+
+    <div class="sidebar-section-label">MEMBERS</div>
+    <a href="members.html"    class="sidebar-item" id="nav-members">Members</a>
+    <a href="attendance.html" class="sidebar-item" id="nav-attendance">Attendance</a>
+
+    <div class="sidebar-section-label">FINANCE</div>
+    <a href="fees.html"       class="sidebar-item" id="nav-fees">Fees & Pending</a>
+    <a href="payments.html"   class="sidebar-item" id="nav-payments">Payments</a>
+    <a href="receipts.html"   class="sidebar-item" id="nav-receipts">Receipts</a>
+
+    <div class="sidebar-section-label">REPORTING</div>
+    <a href="reports.html"    class="sidebar-item active" id="nav-reports">Monthly Reports</a>
+
+    <div class="sidebar-section-label">COMMUNICATION</div>
+    <a href="inquiries.html"  class="sidebar-item" id="nav-inquiries">Inquiries</a>
+
+    <div class="sidebar-section-label">SYSTEM</div>
+    <a href="settings.html"   class="sidebar-item" id="nav-settings">Settings</a>
+    <a href="../index.html"   class="sidebar-item" target="_blank">View Website</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="admin-profile">
+      <div class="admin-avatar" aria-hidden="true">AD</div>
+      <div class="admin-profile-info">
+        <div class="admin-profile-name">Admin</div>
+        <div class="admin-profile-role">Gym Manager</div>
+      </div>
+    </div>
+    <button class="sidebar-item" data-logout style="color: var(--danger);">
+      Logout
+    </button>
+  </div>
+</aside>
+<div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+<div class="admin-main">
+  <header class="admin-topbar" role="banner">
+    <div class="topbar-left">
+      <button class="topbar-menu-btn" id="topbar-menu-btn" aria-label="Open sidebar">☰</button>
+      <div><div class="topbar-title">Monthly Reports</div><div class="topbar-subtitle">Insights and analytics — Demo Data</div></div>
+    </div>
+    <div class="topbar-right">
+      <div class="demo-badge" role="status"><span class="demo-dot" aria-hidden="true"></span>DEMO MODE</div>
+    </div>
+  </header>
+
+  <main class="admin-content">
+
+    <!-- Period Selector -->
+    <div class="data-table-wrapper" style="margin-bottom: var(--space-5);">
+      <div class="data-table-header" style="padding: var(--space-4) var(--space-5);">
+        <div class="data-table-title">Report Period</div>
+        <div class="data-table-actions">
+          <select id="report-month" class="table-filter" aria-label="Select month">
+            <option value="8">August 2026 (Current)</option>
+            <option value="7">July 2026</option>
+            <option value="6">June 2026</option>
+            <option value="5">May 2026</option>
+            <option value="4">April 2026</option>
+            <option value="3">March 2026</option>
+          </select>
+          <button class="btn btn-secondary btn-sm" id="export-report-btn">📥 Export Report CSV</button>
+          <button class="btn btn-secondary btn-sm" onclick="window.print()">🖨️ Print Report</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="report-stats-row" id="report-stats">
+      <div class="mini-stat"><div class="mini-stat-value" id="rep-collected" style="color:var(--success);">—</div><div class="mini-stat-label">Revenue Collected</div></div>
+      <div class="mini-stat"><div class="mini-stat-value" id="rep-pending" style="color:var(--warning);">—</div><div class="mini-stat-label">Outstanding Dues</div></div>
+      <div class="mini-stat"><div class="mini-stat-value" id="rep-new" style="color:var(--info);">—</div><div class="mini-stat-label">New Members</div></div>
+      <div class="mini-stat"><div class="mini-stat-value" id="rep-att" style="color:var(--accent);">—</div><div class="mini-stat-label">Avg Daily Attendance</div></div>
+    </div>
+
+    <!-- Charts -->
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-header"><div><div class="chart-title">Revenue Trend</div><div class="chart-subtitle">Monthly collected vs pending</div></div></div>
+        <div class="chart-svg-container"><svg id="rep-revenue-chart" class="chart-svg" height="200" aria-label="Revenue line chart"></svg></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-header"><div><div class="chart-title">Attendance Trend</div><div class="chart-subtitle">Monthly attendance count</div></div></div>
+        <div class="chart-svg-container"><svg id="rep-att-chart" class="chart-svg" height="200" aria-label="Attendance chart"></svg></div>
+      </div>
+    </div>
+
+    <!-- Members by Plan -->
+    <div class="data-table-wrapper" style="margin-bottom: var(--space-5);">
+      <div class="data-table-header"><div class="data-table-title">Membership Breakdown</div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Plan</th><th>Members</th><th>Revenue (Paid)</th><th>Pending</th><th>% of Total</th></tr></thead>
+          <tbody id="plan-breakdown-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Top Members by Attendance -->
+    <div class="data-table-wrapper" style="margin-bottom: var(--space-5);">
+      <div class="data-table-header"><div class="data-table-title">Top Members by Attendance</div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Rank</th><th>Member</th><th>Plan</th><th>Days Present</th><th>Attendance %</th></tr></thead>
+          <tbody id="top-att-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Expiring Next Month -->
+    <div class="data-table-wrapper">
+      <div class="data-table-header"><div class="data-table-title">Members Expiring Next 30 Days</div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Member</th><th>Plan</th><th>Expiry Date</th><th>Days Left</th><th>Fee Status</th></tr></thead>
+          <tbody id="expiring-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div style="font-size: var(--font-xs); color: var(--text-muted); text-align: center; padding: var(--space-4); margin-top: var(--space-4);">
+      ⚠️ Demo Mode: All report data is generated from synthetic demo data. Real reports will use actual gym data after Phase 2 backend integration.
+    </div>
+  </main>
+</div>
+
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/admin.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const members  = getMembers();
+  const payments = getPayments();
+
+  // Stats
+  const paid     = payments.filter(p => p.status === 'Paid');
+  const pending  = payments.filter(p => p.status !== 'Paid');
+  const paidAmt  = paid.reduce((s, p) => s + p.amount, 0);
+  const pendAmt  = pending.reduce((s, p) => s + p.amount, 0);
+  const newMems  = members.filter(m => m.joinDate >= '2026-08-01').length;
+  const avgAtt   = Math.round(getWeeklyAttendanceData().values.reduce((s, v) => s + v, 0) / 7);
+
+  document.getElementById('rep-collected').textContent = formatCurrency(paidAmt);
+  document.getElementById('rep-pending').textContent   = formatCurrency(pendAmt);
+  document.getElementById('rep-new').textContent       = newMems;
+  document.getElementById('rep-att').textContent       = avgAtt + '/day';
+
+  // Charts
+  setTimeout(() => {
+    const rd = getRevenueData();
+    const adSvg = document.getElementById('rep-revenue-chart');
+    if (adSvg) drawLineChart(adSvg, rd.collected, rd.months, { width: adSvg.parentElement.offsetWidth || 500 });
+
+    const attSvg = document.getElementById('rep-att-chart');
+    if (attSvg) {
+      const ad = getMonthlyAttendanceData();
+      drawBarChart(attSvg, ad.values, ad.months, { width: attSvg.parentElement.offsetWidth || 500 });
+    }
+  }, 150);
+
+  // Plan breakdown
+  const plans = ['Monthly', 'Quarterly', 'Half-Yearly', 'Annual'];
+  const planStats = plans.map(plan => {
+    const planMembers = members.filter(m => m.membership === plan);
+    const planPaid = paid.filter(p => p.plan === plan).reduce((s, p) => s + p.amount, 0);
+    const planPend = pending.filter(p => p.plan === plan).reduce((s, p) => s + p.amount, 0);
+    return { plan, count: planMembers.length, paid: planPaid, pending: planPend };
+  });
+  const planTbody = document.getElementById('plan-breakdown-tbody');
+  if (planTbody) {
+    planTbody.innerHTML = planStats.map(p => `
+      <tr>
+        <td><span class="badge badge-neutral">${p.plan}</span></td>
+        <td><strong>${p.count}</strong></td>
+        <td style="color:var(--success); font-weight:700;">${formatCurrency(p.paid)}</td>
+        <td style="color:var(--warning); font-weight:700;">${formatCurrency(p.pending)}</td>
+        <td>${members.length > 0 ? Math.round(p.count / members.length * 100) : 0}%</td>
+      </tr>
+    `).join('');
+  }
+
+  // Top attendance
+  const sortedByAtt = members
+    .map(m => ({ ...m, ...getAttendanceStats(m.id) }))
+    .sort((a, b) => b.percentage - a.percentage)
+    .slice(0, 10);
+
+  const attTbody = document.getElementById('top-att-tbody');
+  if (attTbody) {
+    attTbody.innerHTML = sortedByAtt.map((m, i) => `
+      <tr>
+        <td><strong style="color:${i < 3 ? 'var(--accent)' : 'inherit'};">#${i+1}</strong></td>
+        <td>
+          <div class="member-cell">
+            <div class="member-avatar" aria-hidden="true">${getInitials(m.name)}</div>
+            <div><div class="member-name">${m.name}</div><div class="member-id">${m.id}</div></div>
+          </div>
+        </td>
+        <td><span class="badge badge-neutral">${m.membership}</span></td>
+        <td>${m.present}</td>
+        <td>
+          <div style="display:flex; align-items:center; gap:var(--space-2);">
+            <div class="att-bar" style="width:60px; margin:0;"><div class="att-bar-fill" style="width:${m.percentage}%;"></div></div>
+            <strong>${m.percentage}%</strong>
+          </div>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  // Expiring
+  const expiring = getExpiringMembers(30);
+  const expTbody = document.getElementById('expiring-tbody');
+  if (expTbody) {
+    expTbody.innerHTML = expiring.length === 0
+      ? `<tr><td colspan="5"><div class="empty-state"><span class="empty-state-icon">✅</span><h3>No Expiring Memberships</h3></div></td></tr>`
+      : expiring.map(m => {
+          const days = getDaysUntilExpiry(m.expiryDate);
+          const cls = days <= 7 ? 'danger' : 'warning';
+          return `
+            <tr>
+              <td>
+                <div class="member-cell">
+                  <div class="member-avatar" aria-hidden="true">${getInitials(m.name)}</div>
+                  <div><div class="member-name">${m.name}</div><div class="member-id">${m.id}</div></div>
+                </div>
+              </td>
+              <td><span class="badge badge-neutral">${m.membership}</span></td>
+              <td>${formatDate(m.expiryDate)}</td>
+              <td><span class="badge badge-${cls}">${days}d</span></td>
+              <td><span class="badge badge-${m.feeStatus === 'Paid' ? 'success' : 'warning'}">${m.feeStatus}</span></td>
+            </tr>
+          `;
+        }).join('');
+  }
+
+  document.getElementById('export-report-btn')?.addEventListener('click', function() {
+    const rows = members.map(m => {
+      const att = getAttendanceStats(m.id);
+      const pay = paid.filter(p => p.memberId === m.id).reduce((s, p) => s + p.amount, 0);
+      return [m.id, m.name, m.membership, m.status, m.feeStatus, m.joinDate, m.expiryDate, att.percentage + '%', formatCurrency(pay)];
+    });
+    exportCSV(['ID', 'Name', 'Plan', 'Status', 'Fee Status', 'Join Date', 'Expiry', 'Attendance%', 'Amount Paid'], rows, 'gym-report.csv');
+  });
+});
+</script>
+</body>
+</html>

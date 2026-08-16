@@ -1,0 +1,253 @@
+/* ============================================================
+   GYM MANAGEMENT PLATFORM — RESPONSIVE STYLES
+   Phase 2A: Full Responsive Repair
+   Breakpoints: 1200px, 1024px, 768px, 640px, 480px, 360px
+   ============================================================ */
+
+/* ── Large Desktop ── */
+@media (min-width: 1536px) {
+  :root { --container-max: 1400px; }
+  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  .stats-overview-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ── Standard Desktop (below 1280px) ── */
+@media (max-width: 1280px) {
+  .membership-grid { grid-template-columns: repeat(2, 1fr); }
+  .trainers-grid { grid-template-columns: repeat(3, 1fr); }
+  .charts-grid { grid-template-columns: 1fr; }
+  .stats-overview-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-grid { gap: var(--space-8); }
+  .quick-actions-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── Tablet (below 1024px) ── */
+@media (max-width: 1024px) {
+  /* ─── Public Nav ─── */
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+
+  /* ─── Public Hero ─── */
+  .hero-grid { grid-template-columns: 1fr; text-align: center; }
+  .hero-subtitle { margin-left: auto; margin-right: auto; }
+  .hero-actions { justify-content: center; }
+  .hero-floating-card { left: 50%; transform: translateX(-50%); bottom: var(--space-4); }
+
+  /* ─── Public Grids ─── */
+  .facilities-grid { grid-template-columns: repeat(2, 1fr); }
+  .programs-grid { grid-template-columns: repeat(2, 1fr); }
+  .feature-strip-grid { grid-template-columns: repeat(2, 1fr); }
+  .trainers-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .split-feature-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+
+  /* ─── Admin Sidebar: becomes off-canvas drawer ─── */
+  .sidebar {
+    transform: translateX(-100%);
+    z-index: 1200;
+    box-shadow: var(--shadow-xl);
+  }
+
+  .sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  /* Show close button and hamburger on tablet/mobile */
+  .sidebar-close { display: flex; }
+  .topbar-menu-btn { display: flex; }
+
+  /* Main content takes full width when sidebar is off-canvas */
+  .admin-main { margin-left: 0; }
+
+  /* ─── Admin Grids: reduce columns ─── */
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .quick-actions-grid { grid-template-columns: repeat(2, 1fr); }
+  .middle-dashboard-grid { grid-template-columns: 1fr; }
+  .bottom-dashboard-grid { grid-template-columns: 1fr; }
+  .mini-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .fee-summary { grid-template-columns: repeat(2, 1fr); }
+  .stats-overview-grid { grid-template-columns: repeat(2, 1fr); }
+  .attendance-stats { grid-template-columns: repeat(2, 1fr); }
+  .settings-grid { grid-template-columns: 1fr; }
+  .info-grid { grid-template-columns: 1fr; }
+  .charts-grid { grid-template-columns: 1fr; }
+
+  /* ─── Profile ─── */
+  .profile-header { flex-direction: column; text-align: center; }
+  .profile-actions { margin-left: 0; justify-content: center; width: 100%; flex-wrap: wrap; }
+
+  /* ─── Topbar search hide on tablet ─── */
+  .topbar-search { width: 200px; }
+
+  /* ─── Modal ─── */
+  .modal { max-width: calc(100vw - 40px); }
+  .modal-lg { max-width: calc(100vw - 40px); }
+
+  /* ─── Drawer ─── */
+  .drawer { width: 420px; }
+}
+
+/* ── Mobile (below 768px) ── */
+@media (max-width: 768px) {
+  :root {
+    --space-16: 48px;
+  }
+
+  /* ─── Public ─── */
+  .section { padding: var(--space-12) 0; }
+  .container { padding-left: var(--space-4); padding-right: var(--space-4); }
+
+  .hero-title { font-size: var(--font-4xl); }
+  .page-hero-title { font-size: var(--font-3xl); }
+  .hero-stats-strip { flex-wrap: wrap; gap: var(--space-4); }
+
+  .nav-cta { display: none; }
+
+  .membership-grid { grid-template-columns: 1fr; }
+  .facilities-grid { grid-template-columns: 1fr; }
+  .programs-grid { grid-template-columns: 1fr; }
+  .feature-strip-grid { grid-template-columns: 1fr; }
+  .trainers-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* ─── Admin ─── */
+  .admin-topbar { padding: 0 var(--space-4); gap: var(--space-2); }
+  .topbar-search { display: none; }
+  .admin-content { padding: var(--space-4); }
+
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
+  .kpi-value { font-size: var(--font-2xl); }
+
+  .quick-actions-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
+  .mini-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .fee-summary { grid-template-columns: repeat(2, 1fr); }
+  .stats-overview-grid { grid-template-columns: repeat(2, 1fr); }
+  .attendance-stats { grid-template-columns: repeat(2, 1fr); }
+
+  /* ─── Table toolbar ─── */
+  .data-table-header { flex-direction: column; align-items: stretch; }
+  .data-table-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2);
+  }
+  .table-search input { width: 100%; }
+  .table-filter { width: 100%; }
+
+  /* ─── Forms ─── */
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  .settings-grid { grid-template-columns: 1fr; }
+
+  /* ─── Modal ─── */
+  .modal-backdrop { padding: var(--space-4) var(--space-3); align-items: flex-end; }
+  .modal {
+    max-width: 100%;
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+    max-height: 90vh;
+  }
+  .modal-sm, .modal-lg, .modal-xl { max-width: 100%; }
+  .modal-body { padding: var(--space-4); }
+  .modal-header, .modal-footer { padding: var(--space-4); }
+
+  /* ─── Drawer ─── */
+  .drawer { width: 100%; }
+
+  /* ─── Toast ─── */
+  .toast-container {
+    left: var(--space-3);
+    right: var(--space-3);
+    bottom: var(--space-4);
+    width: auto;
+    max-width: 100%;
+  }
+
+  /* ─── Login ─── */
+  .login-card { padding: var(--space-6); }
+  .login-title { font-size: var(--font-xl); }
+
+  /* ─── Info grid ─── */
+  .info-grid { grid-template-columns: 1fr; }
+
+  /* ─── Gallery lightbox ─── */
+  .lightbox-prev { left: 8px; }
+  .lightbox-next { right: 8px; }
+}
+
+/* ── Narrow Mobile (below 640px) ── */
+@media (max-width: 640px) {
+  .section-title { font-size: var(--font-3xl); }
+
+  .admin-topbar { height: 60px; }
+  :root { --nav-height: 60px; }
+
+  .topbar-title { font-size: var(--font-base); }
+  .topbar-subtitle { display: none; }
+
+  /* Demo badge — compact */
+  .demo-badge { font-size: 10px; padding: 4px 8px; }
+  .demo-badge span:last-child { display: none; }
+
+  /* KPI grid single-column on small */
+  .kpi-grid { grid-template-columns: 1fr 1fr; }
+  .quick-actions-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── Small Mobile (below 480px) ── */
+@media (max-width: 480px) {
+  :root { --nav-height: 58px; }
+
+  .hero-title { font-size: var(--font-3xl); }
+  .stats-grid { grid-template-columns: 1fr; }
+  .mini-stats-grid { grid-template-columns: 1fr 1fr; }
+  .fee-summary { grid-template-columns: 1fr 1fr; }
+  .attendance-stats { grid-template-columns: 1fr 1fr; }
+
+  /* Full-width modal on tiny screens */
+  .modal-backdrop { padding: 0; align-items: flex-end; }
+  .modal {
+    border-radius: 20px 20px 0 0;
+    max-height: 92vh;
+  }
+
+  /* Actions wrap */
+  .table-actions { flex-wrap: wrap; }
+
+  /* Login */
+  .login-page { padding: var(--space-3); }
+  .login-card { padding: var(--space-5); }
+}
+
+/* ── Extra Small Mobile (below 360px) ── */
+@media (max-width: 360px) {
+  .hero-title { font-size: var(--font-2xl); }
+  .kpi-grid { grid-template-columns: 1fr; }
+  .quick-actions-grid { grid-template-columns: 1fr; }
+  .mini-stats-grid { grid-template-columns: 1fr; }
+  .fee-summary { grid-template-columns: 1fr; }
+}
+
+/* ── Print Styles ── */
+@media print {
+  .sidebar,
+  .admin-topbar,
+  .modal-footer,
+  .drawer,
+  .toast-container,
+  .no-print {
+    display: none !important;
+  }
+
+  .admin-main {
+    margin-left: 0 !important;
+  }
+
+  .admin-content {
+    padding: 0 !important;
+  }
+
+  body {
+    background: white !important;
+  }
+}

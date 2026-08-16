@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Settings | Fitness Club Tarsadi Admin</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body class="admin-body">
+
+<aside class="sidebar" id="sidebar-container">
+  <!-- Populated by js/sidebar.js -->
+</aside>
+<div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+<div class="admin-main">
+  <header class="admin-topbar" role="banner">
+    <div class="topbar-left">
+      <button class="topbar-menu-btn" id="topbar-menu-btn" aria-label="Open sidebar">☰</button>
+      <div><div class="topbar-title">Settings</div><div class="topbar-subtitle">System configuration — Fitness Club Tarsadi</div></div>
+    </div>
+  </header>
+
+  <main class="admin-content">
+
+    <div class="settings-grid">
+      <div class="settings-content">
+
+        <!-- Gym Info -->
+        <div class="settings-section">
+          <div class="settings-section-title">Gym Information</div>
+          <p style="font-size:var(--font-xs); color:var(--text-muted); margin-bottom:var(--space-5);">
+            Official business details for Fitness Club Tarsadi.
+          </p>
+          <div class="form-group">
+            <label class="form-label" for="set-gym-name">Gym Name</label>
+            <input type="text" id="set-gym-name" class="form-input" value="Fitness Club Tarsadi">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="set-gym-address">Address</label>
+            <textarea id="set-gym-address" class="form-textarea" style="min-height:80px;">Pgp Township, Kim - Kosamba Rd, opp. vaibhav bungalows, Tarsadi, Kosamba, Gujarat 394120</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="set-instagram">Instagram Profile</label>
+            <input type="text" id="set-instagram" class="form-input" value="https://www.instagram.com/fitnessclubtarsadi/">
+          </div>
+          <button class="btn btn-primary btn-sm" id="save-gym-info-btn">Save Gym Info</button>
+        </div>
+
+        <!-- Admin Auth -->
+        <div class="settings-section">
+          <div class="settings-section-title">Admin Credentials</div>
+          <div class="card" style="background:rgba(239,68,68,0.06); border-color:rgba(239,68,68,0.2); padding:var(--space-4); font-size:var(--font-sm); color:var(--text-secondary); margin-bottom:var(--space-5);">
+            🔴 <strong>Security Warning:</strong> This is a frontend-only demo. These credentials are stored in plain text and are NOT secure.
+            Real authentication will require a secure backend with hashed passwords (Phase 2).
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Current Username</label>
+              <input type="text" class="form-input" value="admin" readonly style="cursor:not-allowed; opacity:0.7;" aria-label="Current username (read-only)">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Current Password</label>
+              <input type="text" class="form-input" value="demo123" readonly style="cursor:not-allowed; opacity:0.7;" aria-label="Current password (read-only)">
+            </div>
+          </div>
+          <p style="font-size:var(--font-xs); color:var(--text-muted);">Password change will be available after backend integration (Phase 2).</p>
+        </div>
+
+        <!-- Reminders -->
+        <div class="settings-section">
+          <div class="settings-section-title">Reminder Thresholds</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="set-reminder-days">Remind Before Expiry (Days)</label>
+              <input type="number" id="set-reminder-days" class="form-input" value="7" min="1" max="60">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="set-irregular-threshold">Irregular Attendance Threshold (%)</label>
+              <input type="number" id="set-irregular-threshold" class="form-input" value="50" min="10" max="90">
+            </div>
+          </div>
+          <button class="btn btn-primary btn-sm" id="save-thresholds-btn">Save Thresholds</button>
+        </div>
+
+        <!-- Data Management -->
+        <div class="settings-section">
+          <div class="settings-section-title">Data Management</div>
+          <p style="font-size:var(--font-sm); color:var(--text-secondary); margin-bottom:var(--space-5); line-height:1.6;">
+            In demo mode, all data is stored in browser localStorage. Clearing will reset all data to original mock data.
+          </p>
+          <div style="display:flex; gap:var(--space-3); flex-wrap:wrap;">
+            <button class="btn btn-secondary btn-sm" id="export-all-btn">📥 Export All Data (CSV)</button>
+            <button class="btn btn-secondary btn-sm" id="reset-demo-btn" style="color:var(--danger); border-color:rgba(239,68,68,0.3);">
+              🔄 Reset to Demo Data
+            </button>
+          </div>
+        </div>
+
+        <!-- Biometric System Placeholder (Section 14) -->
+        <div class="settings-section">
+          <div class="settings-section-title">Biometric Integration</div>
+          <div style="display:flex; flex-direction:column; gap:var(--space-3); margin-bottom:var(--space-5);">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:var(--space-3) var(--space-4); background:var(--bg-canvas); border:1px solid var(--border-light); border-radius:var(--radius-card); font-size:var(--font-sm);">
+              <span style="font-weight:700; color:var(--text-dark);">Connection Status</span>
+              <span class="badge badge-danger">Not Connected — Demo Mode</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:var(--space-3) var(--space-4); background:var(--bg-canvas); border:1px solid var(--border-light); border-radius:var(--radius-card); font-size:var(--font-sm);">
+              <span style="font-weight:700; color:var(--text-dark);">System</span>
+              <span style="color:var(--text-muted); font-size:var(--font-xs);">Not Configured</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:var(--space-3) var(--space-4); background:var(--bg-canvas); border:1px solid var(--border-light); border-radius:var(--radius-card); font-size:var(--font-sm);">
+              <span style="font-weight:700; color:var(--text-dark);">Database</span>
+              <span style="color:var(--text-muted); font-size:var(--font-xs);">Not Connected</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:var(--space-3) var(--space-4); background:var(--bg-canvas); border:1px solid var(--border-light); border-radius:var(--radius-card); font-size:var(--font-sm);">
+              <span style="font-weight:700; color:var(--text-dark);">Last Sync</span>
+              <span style="color:var(--text-muted); font-size:var(--font-xs);">Not Available</span>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="showBiometricModal()">Configure Integration</button>
+        </div>
+
+      </div>
+
+      <!-- Settings Sidebar -->
+      <div class="settings-sidebar">
+        <div class="chart-card" style="padding:var(--space-5);">
+          <div style="font-weight:700; margin-bottom:var(--space-4); color:var(--text-primary);">Quick Actions</div>
+          <div style="display:flex; flex-direction:column; gap:var(--space-2);">
+            <a href="members.html"    class="btn btn-secondary btn-sm w-full">View All Members</a>
+            <a href="fees.html"       class="btn btn-secondary btn-sm w-full">Pending Fees</a>
+            <a href="reports.html"    class="btn btn-secondary btn-sm w-full">View Reports</a>
+            <a href="../index.html" target="_blank" class="btn btn-secondary btn-sm w-full">View Website</a>
+          </div>
+        </div>
+        <div class="chart-card" style="padding:var(--space-5); margin-top:var(--space-5);">
+          <div style="font-weight:700; margin-bottom:var(--space-4); color:var(--text-primary);">Demo Info</div>
+          <div style="font-size:var(--font-xs); color:var(--text-secondary); line-height:1.7;">
+            <strong>Credentials:</strong><br>
+            Username: <code style="color:var(--accent);">admin</code><br>
+            Password: <code style="color:var(--accent);">demo123</code><br><br>
+            <strong>Data:</strong> 30 demo members<br>
+            100+ attendance records<br>
+            30 payment records<br>
+            10 demo inquiries
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/sidebar.js"></script>
+<script src="../js/admin.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('save-gym-info-btn')?.addEventListener('click', function() {
+    showToast('Demo Mode: Gym info saved to localStorage. Will be applied to real config in Phase 2.', 'success', 'Saved');
+  });
+
+  document.getElementById('save-thresholds-btn')?.addEventListener('click', function() {
+    showToast('Thresholds saved. Changes will reflect on next dashboard load.', 'success', 'Saved');
+  });
+
+  document.getElementById('reset-demo-btn')?.addEventListener('click', function() {
+    if (confirm('Reset all data to original demo data? This cannot be undone.')) {
+      resetDemoData();
+      showToast('Demo data has been reset to original.', 'success', 'Reset Complete');
+    }
+  });
+
+  document.getElementById('export-all-btn')?.addEventListener('click', function() {
+    const members = getMembers();
+    const rows = members.map(m => {
+      const att = getAttendanceStats(m.id);
+      return [m.id, m.name, m.phone, m.email, m.membership, m.status, m.feeStatus, m.joinDate, m.expiryDate, att.percentage + '%'];
+    });
+    exportCSV(['ID', 'Name', 'Phone', 'Email', 'Plan', 'Status', 'Fee Status', 'Join Date', 'Expiry', 'Attendance%'], rows, 'gym-all-data.csv');
+  });
+});
+</script>
+</body>
+</html>

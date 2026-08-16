@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Inquiries | Fitness Club Tarsadi Admin</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body class="admin-body">
+
+<aside class="sidebar" id="sidebar" role="navigation" aria-label="Admin sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">G</div>
+      <div>
+        <div class="sidebar-logo-text">FITNESS CLUB TARSADI</div>
+        <div class="sidebar-logo-sub">Admin Panel</div>
+      </div>
+    </div>
+    <button class="sidebar-close" id="sidebar-close" aria-label="Close sidebar">✕</button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-section-label">MAIN</div>
+    <a href="dashboard.html"  class="sidebar-item" id="nav-dashboard">Dashboard</a>
+
+    <div class="sidebar-section-label">MEMBERS</div>
+    <a href="members.html"    class="sidebar-item" id="nav-members">Members</a>
+    <a href="attendance.html" class="sidebar-item" id="nav-attendance">Attendance</a>
+
+    <div class="sidebar-section-label">FINANCE</div>
+    <a href="fees.html"       class="sidebar-item" id="nav-fees">Fees & Pending</a>
+    <a href="payments.html"   class="sidebar-item" id="nav-payments">Payments</a>
+    <a href="receipts.html"   class="sidebar-item" id="nav-receipts">Receipts</a>
+
+    <div class="sidebar-section-label">REPORTING</div>
+    <a href="reports.html"    class="sidebar-item" id="nav-reports">Monthly Reports</a>
+
+    <div class="sidebar-section-label">COMMUNICATION</div>
+    <a href="inquiries.html"  class="sidebar-item active" id="nav-inquiries">Inquiries</a>
+
+    <div class="sidebar-section-label">SYSTEM</div>
+    <a href="settings.html"   class="sidebar-item" id="nav-settings">Settings</a>
+    <a href="../index.html"   class="sidebar-item" target="_blank">View Website</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="admin-profile">
+      <div class="admin-avatar" aria-hidden="true">AD</div>
+      <div class="admin-profile-info">
+        <div class="admin-profile-name">Admin</div>
+        <div class="admin-profile-role">Gym Manager</div>
+      </div>
+    </div>
+    <button class="sidebar-item" data-logout style="color: var(--danger);">
+      Logout
+    </button>
+  </div>
+</aside>
+<div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+<div class="admin-main">
+  <header class="admin-topbar" role="banner">
+    <div class="topbar-left">
+      <button class="topbar-menu-btn" id="topbar-menu-btn" aria-label="Open sidebar">☰</button>
+      <div><div class="topbar-title">Inquiries</div><div class="topbar-subtitle">Visitor inquiries from the website</div></div>
+    </div>
+    <div class="topbar-right">
+      <div class="demo-badge" role="status"><span class="demo-dot" aria-hidden="true"></span>DEMO MODE</div>
+    </div>
+  </header>
+
+  <main class="admin-content">
+    <!-- Stats -->
+    <div class="mini-stats-grid" style="margin-bottom: var(--space-6);">
+      <div class="mini-stat"><div class="mini-stat-value" id="inq-new" style="color:var(--info);">—</div><div class="mini-stat-label">New Inquiries</div></div>
+      <div class="mini-stat"><div class="mini-stat-value" id="inq-contacted" style="color:var(--warning);">—</div><div class="mini-stat-label">Contacted</div></div>
+      <div class="mini-stat"><div class="mini-stat-value" id="inq-converted" style="color:var(--success);">—</div><div class="mini-stat-label">Converted to Members</div></div>
+      <div class="mini-stat"><div class="mini-stat-value" id="inq-total">—</div><div class="mini-stat-label">Total Inquiries</div></div>
+    </div>
+
+    <!-- Table -->
+    <div class="data-table-wrapper">
+      <div class="data-table-header">
+        <div class="data-table-title">All Inquiries</div>
+        <div class="data-table-actions">
+          <select id="inq-filter" class="table-filter" aria-label="Filter by status">
+            <option value="all">All</option>
+            <option value="New">New</option>
+            <option value="Contacted">Contacted</option>
+            <option value="Converted">Converted</option>
+            <option value="Closed">Closed</option>
+          </select>
+          <div class="table-search" role="search">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="search" id="inq-search" placeholder="Search name, phone…" aria-label="Search inquiries">
+          </div>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Plan Interest</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="inq-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Inquiry Detail Modal -->
+<div class="modal-backdrop" id="inq-modal" role="dialog" aria-modal="true" aria-labelledby="inq-modal-title">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h2 class="modal-title" id="inq-modal-title">📩 Inquiry Details</h2>
+      <button class="modal-close" data-modal-close aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" id="inq-modal-body"></div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary btn-sm" data-modal-close>Close</button>
+      <button class="btn btn-secondary btn-sm" id="inq-wa-btn">💬 WhatsApp</button>
+      <button class="btn btn-primary btn-sm" id="inq-convert-btn">✅ Mark Converted</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/admin.js"></script>
+<script>
+let currentInqId = null;
+
+document.addEventListener('DOMContentLoaded', function() {
+  let inquiries = getInquiries();
+
+  function renderStats() {
+    const inqs = getInquiries();
+    document.getElementById('inq-new').textContent       = inqs.filter(i => i.status === 'New').length;
+    document.getElementById('inq-contacted').textContent = inqs.filter(i => i.status === 'Contacted').length;
+    document.getElementById('inq-converted').textContent = inqs.filter(i => i.status === 'Converted').length;
+    document.getElementById('inq-total').textContent     = inqs.length;
+  }
+
+  function renderTable(filter, q) {
+    const tbody = document.getElementById('inq-tbody');
+    const items = getInquiries().filter(i => {
+      const matchStatus = filter === 'all' || i.status === filter;
+      const matchQ = !q || i.name.toLowerCase().includes(q) || i.phone.includes(q);
+      return matchStatus && matchQ;
+    });
+
+    if (items.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="7"><div class="empty-state"><span class="empty-state-icon">📩</span><h3>No Inquiries Found</h3></div></td></tr>`;
+      return;
+    }
+
+    const statusCls = { New: 'info', Contacted: 'warning', Converted: 'success', Closed: 'neutral' };
+    tbody.innerHTML = items.map(i => `
+      <tr>
+        <td style="font-family:monospace; font-size:var(--font-xs);">${i.id}</td>
+        <td>
+          <div class="member-cell">
+            <div class="member-avatar" aria-hidden="true">${getInitials(i.name)}</div>
+            <div><div class="member-name">${i.name}</div>${i.email ? `<div class="member-id">${i.email}</div>` : ''}</div>
+          </div>
+        </td>
+        <td>${i.phone}</td>
+        <td><span class="badge badge-neutral">${i.plan}</span></td>
+        <td style="font-size:var(--font-sm);">${formatDate(i.date)}</td>
+        <td><span class="badge badge-${statusCls[i.status] || 'neutral'}">${i.status}</span></td>
+        <td>
+          <div class="table-actions">
+            <button class="action-btn view" onclick="openInqModal('${i.id}')" title="View Details" aria-label="View inquiry from ${i.name}">👁</button>
+            <button class="action-btn whatsapp" onclick="openInqWhatsApp('${i.id}')" title="WhatsApp" aria-label="WhatsApp ${i.name}">💬</button>
+            ${i.status !== 'Converted' && i.status !== 'Closed'
+              ? `<button class="action-btn" onclick="updateInqStatus('${i.id}', 'Contacted')" title="Mark Contacted" aria-label="Mark contacted">📞</button>`
+              : ''}
+          </div>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  window.openInqModal = function(id) {
+    currentInqId = id;
+    const i = getInquiries().find(x => x.id === id);
+    if (!i) return;
+    const statusCls = { New: 'info', Contacted: 'warning', Converted: 'success', Closed: 'neutral' };
+
+    document.getElementById('inq-modal-body').innerHTML = `
+      <div class="info-grid">
+        ${[
+          ['Name',         i.name],
+          ['Phone',        i.phone],
+          ['Email',        i.email || '—'],
+          ['Plan Interest', i.plan],
+          ['Date',         formatDate(i.date)],
+          ['Status',       `<span class="badge badge-${statusCls[i.status]}">${i.status}</span>`],
+          ['Notes',        i.notes || 'No notes added.'],
+        ].map(([l, v]) => `<div class="info-item"><div class="info-item-label">${l}</div><div class="info-item-value">${v}</div></div>`).join('')}
+      </div>
+      <div style="margin-top: var(--space-5);">
+        <label class="form-label" for="inq-message">Message from Visitor</label>
+        <div style="background:var(--bg-input); border:1px solid var(--border); border-radius:var(--radius); padding:var(--space-4); font-size:var(--font-sm); color:var(--text-secondary); line-height:1.6;">${i.message || '—'}</div>
+      </div>
+      <div style="margin-top: var(--space-5);">
+        <label class="form-label" for="inq-notes-edit">Add / Edit Notes</label>
+        <textarea id="inq-notes-edit" class="form-textarea" style="min-height:80px;">${i.notes || ''}</textarea>
+        <button class="btn btn-secondary btn-sm" style="margin-top:var(--space-2);" onclick="saveInqNotes('${id}')">Save Notes</button>
+      </div>
+    `;
+
+    document.getElementById('inq-wa-btn').onclick    = () => openInqWhatsApp(id);
+    document.getElementById('inq-convert-btn').onclick = () => updateInqStatus(id, 'Converted');
+
+    openModal('inq-modal');
+  };
+
+  window.openInqWhatsApp = function(id) {
+    const i = getInquiries().find(x => x.id === id);
+    if (!i) return;
+    const msg = `Hello ${i.name},\n\nThank you for your interest in Fitness Club Tarsadi!\n\nYou enquired about our *${i.plan}* membership.\n\nWe'd love to have you visit our gym. Please feel free to drop by at your convenience.\n\nAddress: Pgp Township, Kim - Kosamba Rd, Tarsadi, Kosamba, Gujarat\n\n— Fitness Club Tarsadi Team`;
+    window.open(`https://wa.me/${i.phone}?text=${encodeURIComponent(msg)}`, '_blank');
+  };
+
+  window.updateInqStatus = function(id, status) {
+    const inqs = getInquiries();
+    const idx  = inqs.findIndex(x => x.id === id);
+    if (idx >= 0) { inqs[idx].status = status; saveInquiries(inqs); }
+    closeModal('inq-modal');
+    renderStats();
+    renderTable(document.getElementById('inq-filter').value, document.getElementById('inq-search').value.toLowerCase());
+    showToast(`Inquiry status updated to ${status}.`, 'success', 'Updated');
+  };
+
+  window.saveInqNotes = function(id) {
+    const notes = document.getElementById('inq-notes-edit')?.value || '';
+    const inqs  = getInquiries();
+    const idx   = inqs.findIndex(x => x.id === id);
+    if (idx >= 0) { inqs[idx].notes = notes; saveInquiries(inqs); }
+    showToast('Notes saved.', 'success');
+  };
+
+  renderStats();
+  renderTable('all', '');
+
+  document.getElementById('inq-filter')?.addEventListener('change', function() {
+    renderTable(this.value, document.getElementById('inq-search').value.toLowerCase());
+  });
+  document.getElementById('inq-search')?.addEventListener('input', function() {
+    renderTable(document.getElementById('inq-filter').value, this.value.toLowerCase());
+  });
+});
+</script>
+</body>
+</html>

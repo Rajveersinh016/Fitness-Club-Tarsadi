@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Membership options at Fitness Club Tarsadi, Kosamba. Monthly, quarterly, and annual gym plans.">
+  <title>Membership Plans | Fitness Club Tarsadi — Kosamba</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo" aria-label="Fitness Club Tarsadi Home">
+      <div class="nav-logo-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/></svg>
+      </div>
+      <div><div class="nav-logo-text">FITNESS CLUB</div><div class="nav-logo-sub">TARSADI</div></div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html"       class="nav-link">Home</a>
+      <a href="about.html"       class="nav-link">About</a>
+      <a href="facilities.html"  class="nav-link">Facilities</a>
+      <a href="membership.html"  class="nav-link active">Membership</a>
+      <a href="gallery.html"     class="nav-link">Gallery</a>
+      <a href="contact.html"     class="nav-link">Contact</a>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <a href="admin/login.html" class="nav-link admin-link">Admin</a>
+    </div>
+    <div class="nav-actions">
+      <a href="contact.html" class="nav-cta">Enquire Now</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html"       class="nav-link">Home</a>
+  <a href="about.html"       class="nav-link">About</a>
+  <a href="facilities.html"  class="nav-link">Facilities</a>
+  <a href="membership.html"  class="nav-link active">Membership</a>
+  <a href="gallery.html"     class="nav-link">Gallery</a>
+  <a href="contact.html"     class="nav-link">Contact</a>
+  <a href="admin/login.html" class="nav-link admin-link">Admin</a>
+</div>
+
+<main>
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="section-label" aria-hidden="true">Membership</div>
+      <h1 class="page-hero-title">Membership Options</h1>
+      <p class="page-hero-subtitle">Flexible options to fit your workout schedule and goals.</p>
+    </div>
+  </section>
+
+  <!-- Plans -->
+  <section class="section" aria-labelledby="plans-heading">
+    <div class="container">
+      <div class="section-header centered">
+        <div class="section-label" aria-hidden="true">Choose Your Plan</div>
+        <h2 class="section-title" id="plans-heading">Gym Membership Plans</h2>
+        <p class="section-subtitle">Every plan includes full gym access, strength equipment, and cardio zones.</p>
+      </div>
+      <div class="membership-grid" id="full-membership-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" style="background: var(--bg-canvas); border-top: 1px solid var(--border-light);" aria-labelledby="faq-heading">
+    <div class="container" style="max-width: 720px;">
+      <div class="section-header centered">
+        <div class="section-label" aria-hidden="true">FAQ</div>
+        <h2 class="section-title" id="faq-heading">Frequently Asked Questions</h2>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: var(--space-3);" id="faq-list">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta-section" aria-labelledby="membership-cta">
+    <div class="container">
+      <div class="section-label" aria-hidden="true" style="justify-content:center;">Join Today</div>
+      <h2 class="cta-title" id="membership-cta">Ready to Get Started?</h2>
+      <p class="cta-subtitle">Visit our gym or submit an inquiry to learn more about our membership plans.</p>
+      <div class="cta-actions" style="display:flex; gap:var(--space-4); justify-content:center; flex-wrap:wrap;">
+        <a href="contact.html" class="btn btn-primary btn-lg">Enquire Now</a>
+        <a href="https://maps.app.goo.gl/hK9i2N3yXx6edGAd6" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-lg">Get Directions ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Fitness Club Tarsadi. All rights reserved. Pgp Township, Tarsadi, Kosamba, Gujarat 394120.</p>
+      <div class="footer-bottom-links">
+        <a href="index.html"      class="footer-bottom-link">Home</a>
+        <a href="contact.html"    class="footer-bottom-link">Contact</a>
+        <a href="admin/login.html" class="footer-bottom-link">Admin Login</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/navigation.js"></script>
+<script>
+const FAQS = [
+  { q: 'Where is Fitness Club Tarsadi located?', a: 'Pgp Township, Kim - Kosamba Rd, opp. vaibhav bungalows, Tarsadi, Kosamba, Gujarat 394120.' },
+  { q: 'How can I inquire about membership fees?', a: 'You can visit the gym directly or submit an inquiry through our Contact page.' },
+  { q: 'What facilities are available?', a: 'We offer strength training equipment, free weights, and cardio machines.' },
+  { q: 'What are the operating hours?', a: 'Please contact the gym directly or visit our desk for current operating timings.' },
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Membership plans
+  const grid = document.getElementById('full-membership-grid');
+  if (grid) {
+    grid.innerHTML = GYM_CONFIG.membershipPlans.map(plan => `
+      <div class="plan-card ${plan.featured ? 'featured' : ''} fade-up">
+        ${plan.featured ? '<div class="plan-badge">Popular</div>' : ''}
+        <div class="plan-name">${plan.name}</div>
+        <div class="plan-duration">${plan.duration}</div>
+        <div class="plan-price" style="font-size:var(--font-2xl);">${plan.price}</div>
+        <div class="plan-price-note">${plan.priceNote}</div>
+        <ul class="plan-features">
+          ${plan.features.map(f => `<li class="plan-feature"><div class="plan-feature-icon" aria-hidden="true">✓</div><span>${f}</span></li>`).join('')}
+        </ul>
+        <a href="contact.html" class="btn btn-${plan.featured ? 'primary' : 'secondary'} w-full" id="plan-${plan.id}-btn">Enquire Now</a>
+      </div>
+    `).join('');
+  }
+
+  // FAQ accordion
+  const faqList = document.getElementById('faq-list');
+  if (faqList) {
+    faqList.innerHTML = FAQS.map((f, i) => `
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-${i}" id="faq-q-${i}" onclick="toggleFaq(this, 'faq-ans-${i}')">
+          ${f.q}
+          <span class="faq-arrow" aria-hidden="true">▾</span>
+        </button>
+        <div class="faq-answer" id="faq-ans-${i}" role="region" aria-labelledby="faq-q-${i}" hidden>
+          ${f.a}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Re-observe new fade-up elements
+  document.querySelectorAll('.fade-up').forEach(el => {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    obs.observe(el);
+  });
+});
+
+function toggleFaq(btn, answerId) {
+  const answer = document.getElementById(answerId);
+  const isOpen = btn.getAttribute('aria-expanded') === 'true';
+  // Close all
+  document.querySelectorAll('.faq-question').forEach(b => {
+    b.setAttribute('aria-expanded', 'false');
+    const ans = document.getElementById(b.getAttribute('aria-controls'));
+    if (ans) ans.hidden = true;
+    b.querySelector('.faq-arrow').textContent = '▾';
+  });
+  if (!isOpen) {
+    btn.setAttribute('aria-expanded', 'true');
+    answer.hidden = false;
+    btn.querySelector('.faq-arrow').textContent = '▴';
+  }
+}
+</script>
+</body>
+</html>

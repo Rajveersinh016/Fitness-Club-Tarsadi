@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Fitness Club Tarsadi in Kosamba, Gujarat. Pgp Township, Kim - Kosamba Rd, Tarsadi. Enquire about membership.">
+  <title>Contact | Fitness Club Tarsadi — Kosamba</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo" aria-label="Fitness Club Tarsadi Home">
+      <div class="nav-logo-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/></svg>
+      </div>
+      <div><div class="nav-logo-text">FITNESS CLUB</div><div class="nav-logo-sub">TARSADI</div></div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html"       class="nav-link">Home</a>
+      <a href="about.html"       class="nav-link">About</a>
+      <a href="facilities.html"  class="nav-link">Facilities</a>
+      <a href="membership.html"  class="nav-link">Membership</a>
+      <a href="gallery.html"     class="nav-link">Gallery</a>
+      <a href="contact.html"     class="nav-link active">Contact</a>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <a href="admin/login.html" class="nav-link admin-link">Admin</a>
+    </div>
+    <div class="nav-actions">
+      <a href="contact.html" class="nav-cta">Enquire Now</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html"       class="nav-link">Home</a>
+  <a href="about.html"       class="nav-link">About</a>
+  <a href="facilities.html"  class="nav-link">Facilities</a>
+  <a href="membership.html"  class="nav-link">Membership</a>
+  <a href="gallery.html"     class="nav-link">Gallery</a>
+  <a href="contact.html"     class="nav-link active">Contact</a>
+  <a href="admin/login.html" class="nav-link admin-link">Admin</a>
+  <a href="contact.html"     class="nav-cta">Enquire Now</a>
+</div>
+
+<main>
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="section-label" aria-hidden="true">Get in Touch</div>
+      <h1 class="page-hero-title">Contact Us</h1>
+      <p class="page-hero-subtitle">Have a question or want to join? Reach out or visit our gym.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Contact Form -->
+        <div>
+          <h2 style="font-size: var(--font-2xl); font-weight: 700; margin-bottom: var(--space-2);">Send an Enquiry</h2>
+          <p style="color: var(--text-secondary); font-size: var(--font-sm); margin-bottom: var(--space-6); line-height: 1.6;">
+            Fill in the form below and our team will be in touch with you.
+          </p>
+
+          <div id="form-success" style="display:none; background: var(--success-subtle, rgba(34,197,94,0.08)); border: 1px solid rgba(34,197,94,0.3); border-radius: var(--radius); padding: var(--space-5); margin-bottom: var(--space-6);" role="alert">
+            <strong style="color: var(--success);">✓ Enquiry Submitted</strong>
+            <p style="margin-top: var(--space-2); font-size: var(--font-sm); color: var(--text-secondary);">
+              Thank you for your interest! Your inquiry has been received.
+            </p>
+          </div>
+
+          <form id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="contact-name">Full Name <span class="required">*</span></label>
+                <input type="text" id="contact-name" class="form-input" placeholder="Your name" required aria-required="true" autocomplete="name">
+                <span class="form-error" id="contact-name-error" role="alert"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contact-phone">Phone Number <span class="required">*</span></label>
+                <input type="tel" id="contact-phone" class="form-input" placeholder="Mobile phone number" required aria-required="true" autocomplete="tel">
+                <span class="form-error" id="contact-phone-error" role="alert"></span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="contact-email">Email</label>
+                <input type="email" id="contact-email" class="form-input" placeholder="Your email address" autocomplete="email">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contact-plan">Membership Plan</label>
+                <select id="contact-plan" class="form-select">
+                  <option value="">Select a plan</option>
+                  <option value="Monthly">Monthly Plan</option>
+                  <option value="Quarterly">Quarterly Plan</option>
+                  <option value="Annual">Annual Plan</option>
+                  <option value="Just enquiring">General Inquiry</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contact-message">Message <span class="required">*</span></label>
+              <textarea id="contact-message" class="form-textarea" placeholder="Tell us how we can help…" required aria-required="true" style="min-height:120px;"></textarea>
+              <span class="form-error" id="contact-message-error" role="alert"></span>
+            </div>
+
+            <button type="submit" id="contact-submit-btn" class="btn btn-primary btn-lg" style="width:100%;">
+              Send Enquiry
+            </button>
+          </form>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <div class="contact-info-card">
+            <h3 style="font-size: var(--font-xl); font-weight: 700; margin-bottom: var(--space-6);">Gym Information</h3>
+
+            <div style="display:flex; flex-direction:column; gap:var(--space-5); margin-bottom: var(--space-8);">
+              <div style="display:flex; gap:var(--space-4);">
+                <div style="width:40px; height:40px; border-radius:50%; background:var(--lime-soft); color:var(--bg-dark); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:18px;" aria-hidden="true">📍</div>
+                <div>
+                  <div style="font-weight:600; color:var(--text-primary); margin-bottom:var(--space-1);">Address</div>
+                  <p style="font-size:var(--font-sm); color:var(--text-secondary); line-height:1.6;">
+                    Pgp Township, Kim - Kosamba Rd, opp. vaibhav bungalows, Tarsadi, Kosamba, Gujarat 394120
+                  </p>
+                </div>
+              </div>
+              <div style="display:flex; gap:var(--space-4);">
+                <div style="width:40px; height:40px; border-radius:50%; background:var(--lime-soft); color:var(--bg-dark); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:18px;" aria-hidden="true">📸</div>
+                <div>
+                  <div style="font-weight:600; color:var(--text-primary); margin-bottom:var(--space-1);">Instagram</div>
+                  <a href="https://www.instagram.com/fitnessclubtarsadi/" target="_blank" rel="noopener noreferrer" style="font-size:var(--font-sm); color:var(--lime-dark); font-weight:700;">@fitnessclubtarsadi ↗</a>
+                </div>
+              </div>
+              <div style="display:flex; gap:var(--space-4);">
+                <div style="width:40px; height:40px; border-radius:50%; background:var(--lime-soft); color:var(--bg-dark); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:18px;" aria-hidden="true">🕐</div>
+                <div>
+                  <div style="font-weight:600; color:var(--text-primary); margin-bottom:var(--space-1);">Timings</div>
+                  <p style="font-size:var(--font-sm); color:var(--text-secondary);">Contact the gym for current operating timings.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Map Button -->
+            <a href="https://maps.app.goo.gl/hK9i2N3yXx6edGAd6" target="_blank" rel="noopener noreferrer"
+               class="btn btn-primary w-full" style="margin-top: var(--space-4);">
+              📍 Get Directions on Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Fitness Club Tarsadi. All rights reserved. Pgp Township, Tarsadi, Kosamba, Gujarat 394120.</p>
+      <div class="footer-bottom-links">
+        <a href="index.html" class="footer-bottom-link">Home</a>
+        <a href="membership.html" class="footer-bottom-link">Membership</a>
+        <a href="admin/login.html" class="footer-bottom-link">Admin Login</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/navigation.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('contact-form');
+  const btn  = document.getElementById('contact-submit-btn');
+
+  form?.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name    = document.getElementById('contact-name').value.trim();
+    const phone   = document.getElementById('contact-phone').value.trim();
+    const message = document.getElementById('contact-message').value.trim();
+    let valid = true;
+
+    if (!name)    { document.getElementById('contact-name-error').textContent    = 'Name is required.';    valid = false; } else { document.getElementById('contact-name-error').textContent    = ''; }
+    if (!phone)   { document.getElementById('contact-phone-error').textContent   = 'Phone is required.';   valid = false; } else { document.getElementById('contact-phone-error').textContent   = ''; }
+    if (!message) { document.getElementById('contact-message-error').textContent = 'Message is required.'; valid = false; } else { document.getElementById('contact-message-error').textContent = ''; }
+
+    if (!valid) return;
+
+    btn.textContent = 'Submitting…'; btn.disabled = true;
+
+    setTimeout(function() {
+      const inquiries = getInquiries();
+      const newId = 'INQ' + String(inquiries.length + 1).padStart(3, '0');
+      inquiries.push({
+        id: newId,
+        name,
+        phone,
+        email: document.getElementById('contact-email').value.trim(),
+        plan:  document.getElementById('contact-plan').value || 'Not specified',
+        message,
+        date: new Date().toISOString().split('T')[0],
+        status: 'New',
+        notes: '',
+      });
+      saveInquiries(inquiries);
+
+      form.reset();
+      document.getElementById('form-success').style.display = 'block';
+      btn.textContent = 'Send Enquiry'; btn.disabled = false;
+
+      window.scrollTo({ top: document.getElementById('form-success').offsetTop - 100, behavior: 'smooth' });
+    }, 600);
+  });
+});
+</script>
+</body>
+</html>

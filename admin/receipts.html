@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Receipts | Fitness Club Tarsadi Admin</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body class="admin-body">
+
+<aside class="sidebar" id="sidebar" role="navigation" aria-label="Admin sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">G</div>
+      <div>
+        <div class="sidebar-logo-text">FITNESS CLUB TARSADI</div>
+        <div class="sidebar-logo-sub">Admin Panel</div>
+      </div>
+    </div>
+    <button class="sidebar-close" id="sidebar-close" aria-label="Close sidebar">✕</button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-section-label">MAIN</div>
+    <a href="dashboard.html"  class="sidebar-item" id="nav-dashboard">Dashboard</a>
+
+    <div class="sidebar-section-label">MEMBERS</div>
+    <a href="members.html"    class="sidebar-item" id="nav-members">Members</a>
+    <a href="attendance.html" class="sidebar-item" id="nav-attendance">Attendance</a>
+
+    <div class="sidebar-section-label">FINANCE</div>
+    <a href="fees.html"       class="sidebar-item" id="nav-fees">Fees & Pending</a>
+    <a href="payments.html"   class="sidebar-item" id="nav-payments">Payments</a>
+    <a href="receipts.html"   class="sidebar-item active" id="nav-receipts">Receipts</a>
+
+    <div class="sidebar-section-label">REPORTING</div>
+    <a href="reports.html"    class="sidebar-item" id="nav-reports">Monthly Reports</a>
+
+    <div class="sidebar-section-label">COMMUNICATION</div>
+    <a href="inquiries.html"  class="sidebar-item" id="nav-inquiries">Inquiries</a>
+
+    <div class="sidebar-section-label">SYSTEM</div>
+    <a href="settings.html"   class="sidebar-item" id="nav-settings">Settings</a>
+    <a href="../index.html"   class="sidebar-item" target="_blank">View Website</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="admin-profile">
+      <div class="admin-avatar" aria-hidden="true">AD</div>
+      <div class="admin-profile-info">
+        <div class="admin-profile-name">Admin</div>
+        <div class="admin-profile-role">Gym Manager</div>
+      </div>
+    </div>
+    <button class="sidebar-item" data-logout style="color: var(--danger);">
+      Logout
+    </button>
+  </div>
+</aside>
+<div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+<div class="admin-main">
+  <header class="admin-topbar" role="banner">
+    <div class="topbar-left">
+      <button class="topbar-menu-btn" id="topbar-menu-btn" aria-label="Open sidebar">☰</button>
+      <div><div class="topbar-title">Receipts</div><div class="topbar-subtitle">View and print payment receipts</div></div>
+    </div>
+    <div class="topbar-right">
+      <div class="demo-badge" role="status"><span class="demo-dot" aria-hidden="true"></span>DEMO MODE</div>
+    </div>
+  </header>
+
+  <main class="admin-content">
+    <!-- Notice -->
+    <div class="card" style="background: var(--warning-subtle); border-color: rgba(245,158,11,0.3); padding: var(--space-4); font-size: var(--font-sm); color: var(--text-secondary); margin-bottom: var(--space-6);">
+      ⚠️ <strong>Demo Mode:</strong> Receipts are generated from demo data. In production, receipts will be connected to real payment transactions and can be emailed via SMTP integration.
+    </div>
+
+    <!-- Receipts Grid -->
+    <div class="data-table-wrapper">
+      <div class="data-table-header">
+        <div class="data-table-title">All Receipts (Paid)</div>
+        <div class="data-table-actions">
+          <div class="table-search" role="search">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="search" id="receipt-search" placeholder="Search member, receipt #…" aria-label="Search receipts">
+          </div>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Receipt #</th>
+              <th>Member</th>
+              <th>Plan</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Method</th>
+              <th>Reference</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="receipts-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Receipt Preview Modal -->
+<div class="modal-backdrop" id="receipt-modal" role="dialog" aria-modal="true" aria-labelledby="receipt-modal-title">
+  <div class="modal modal-lg">
+    <div class="modal-header"><h2 class="modal-title" id="receipt-modal-title">🧾 Receipt Preview</h2><button class="modal-close" data-modal-close aria-label="Close">✕</button></div>
+    <div class="modal-body"><div id="receipt-content"></div></div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary btn-sm" data-modal-close>Close</button>
+      <button class="btn btn-secondary btn-sm" id="print-receipt-btn">🖨️ Print</button>
+      <button class="btn btn-primary btn-sm"   onclick="showToast('Demo: Email client would open here. Real email requires SMTP (Phase 2).', 'info', 'Demo Mode')">✉️ Email</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/admin.js"></script>
+<script>
+let currentReceiptId = null;
+
+document.addEventListener('DOMContentLoaded', function() {
+  const params   = new URLSearchParams(window.location.search);
+  const memberParam = params.get('member');
+
+  function renderReceipts(filter) {
+    const q = filter?.toLowerCase() || '';
+    const tbody = document.getElementById('receipts-tbody');
+    const paid = getPayments().filter(p => {
+      const matchStatus = p.status === 'Paid';
+      const matchMember = !memberParam || p.memberId === memberParam;
+      const matchQ = !q || p.memberName.toLowerCase().includes(q) || p.id.toLowerCase().includes(q);
+      return matchStatus && matchMember && matchQ;
+    });
+
+    if (paid.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="8"><div class="empty-state"><span class="empty-state-icon">🧾</span><h3>No Receipts Found</h3></div></td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = paid.map(p => `
+      <tr>
+        <td style="font-family:monospace; font-size:var(--font-xs); font-weight:700; color:var(--accent);">${p.id}</td>
+        <td>
+          <div class="member-cell">
+            <div class="member-avatar" aria-hidden="true">${getInitials(p.memberName)}</div>
+            <div><div class="member-name">${p.memberName}</div><div class="member-id">${p.memberId}</div></div>
+          </div>
+        </td>
+        <td><span class="badge badge-neutral">${p.plan}</span></td>
+        <td style="font-size:var(--font-sm);">${formatDate(p.date)}</td>
+        <td style="font-weight:700; color:var(--success);">${formatCurrency(p.amount)}</td>
+        <td style="font-size:var(--font-sm);">${p.method}</td>
+        <td style="font-size:var(--font-xs); color:var(--text-muted);">${p.reference || '—'}</td>
+        <td>
+          <div class="table-actions">
+            <button class="action-btn" onclick="viewReceipt('${p.id}')" title="View Receipt" aria-label="View receipt ${p.id}">👁</button>
+            <button class="action-btn" onclick="viewReceipt('${p.id}'); setTimeout(printReceipt, 300);" title="Print" aria-label="Print receipt ${p.id}">🖨️</button>
+          </div>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  renderReceipts('');
+  document.getElementById('receipt-search')?.addEventListener('input', function() { renderReceipts(this.value); });
+
+  document.getElementById('print-receipt-btn')?.addEventListener('click', printReceipt);
+});
+
+function viewReceipt(id) {
+  currentReceiptId = id;
+  const p = getPayments().find(x => x.id === id);
+  const m = getMemberById(p?.memberId);
+  if (!p || !m) return;
+
+  document.getElementById('receipt-content').innerHTML = `
+    <div class="receipt-preview" id="printable-receipt">
+      <div class="receipt-header">
+        <div class="receipt-gym-name">Fitness Club Tarsadi</div>
+        <div class="receipt-gym-sub">Fitness Club · Kosamba, Gujarat, India</div>
+        <div style="font-size:10px; color:#A1A1AA; margin-top:4px;">Tel: YOUR PHONE · Email: YOUR EMAIL</div>
+      </div>
+      <div class="receipt-number">
+        <span class="receipt-number-label">Receipt Number</span>
+        <span class="receipt-number-value">${p.id}</span>
+      </div>
+      ${[
+        ['Member Name',      m.name],
+        ['Member ID',        m.id],
+        ['Phone',            m.phone],
+        ['Membership Plan',  p.plan],
+        ['Payment Date',     formatDate(p.date)],
+        ['Payment Method',   p.method],
+        ['Reference / Txn',  p.reference || '—'],
+        ['Validity Until',   formatDate(m.expiryDate)],
+      ].map(([l, v]) => `<div class="receipt-field"><span class="receipt-field-label">${l}</span><span class="receipt-field-value">${v}</span></div>`).join('')}
+      <div class="receipt-total">
+        <span class="receipt-total-label">Amount Paid</span>
+        <span class="receipt-total-value">${formatCurrency(p.amount)}</span>
+      </div>
+      <div class="receipt-footer-text">
+        Thank you for being a valued member of Fitness Club Tarsadi.<br>
+        This receipt is valid proof of payment for your membership.<br>
+        <span style="font-size:10px; color:#A1A1AA;">Demo Receipt — Data is synthetic. Not a legally binding document in this phase.</span>
+      </div>
+    </div>
+  `;
+  openModal('receipt-modal');
+}
+
+function printReceipt() {
+  const el = document.getElementById('printable-receipt');
+  if (!el) return;
+  const w = window.open('', '_blank');
+  w.document.write(`<!DOCTYPE html><html><head><title>Receipt ${currentReceiptId}</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', Arial, sans-serif; padding: 32px; background: white; color: #000; }
+    .receipt-preview { max-width: 480px; margin: 0 auto; border: 1px solid #ddd; border-radius: 8px; padding: 32px; }
+    .receipt-header { text-align: center; margin-bottom: 24px; }
+    .receipt-gym-name { font-size: 22px; font-weight: 900; letter-spacing: -0.02em; }
+    .receipt-gym-sub { font-size: 12px; color: #666; margin-top: 4px; }
+    .receipt-number { display: flex; justify-content: space-between; background: #f5f5f5; padding: 12px 16px; border-radius: 6px; margin-bottom: 20px; }
+    .receipt-number-label { font-size: 12px; color: #666; }
+    .receipt-number-value { font-weight: 800; font-size: 14px; }
+    .receipt-field { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f0f0f0; font-size: 13px; }
+    .receipt-field-label { color: #666; }
+    .receipt-field-value { font-weight: 600; }
+    .receipt-total { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding: 16px; background: #000; color: #fff; border-radius: 8px; }
+    .receipt-total-label { font-size: 13px; }
+    .receipt-total-value { font-size: 24px; font-weight: 900; }
+    .receipt-footer-text { text-align: center; font-size: 11px; color: #888; margin-top: 20px; line-height: 1.6; }
+    @media print { body { padding: 0; } }
+  </style></head><body>${el.outerHTML}</body></html>`);
+  w.document.close();
+  setTimeout(() => { w.focus(); w.print(); }, 400);
+}
+</script>
+</body>
+</html>

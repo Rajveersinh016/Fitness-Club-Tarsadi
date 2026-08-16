@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Login | Fitness Club Tarsadi</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body class="admin-body" style="display: block; overflow: auto;">
+
+<div class="login-page">
+  <div class="login-bg-glow" aria-hidden="true"></div>
+  <div class="login-bg-glow" style="top: auto; bottom: -20%; left: auto; right: -20%; background: radial-gradient(ellipse, rgba(59,130,246,0.04) 0%, transparent 70%);" aria-hidden="true"></div>
+
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="login-logo-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/></svg>
+      </div>
+      <div>
+        <div style="font-size: var(--font-xl); font-weight: 800; letter-spacing: -0.02em;">FITNESS CLUB TARSADI</div>
+        <div style="font-size: var(--font-xs); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em;">Gym Management Portal</div>
+      </div>
+    </div>
+
+    <h1 class="login-title">Admin Login</h1>
+    <p class="login-subtitle">Sign in to access the Fitness Club Tarsadi admin portal.</p>
+
+    <div class="login-demo-info" role="note" aria-label="Demo credentials">
+      <strong>⚠️ DEMO MODE — Frontend Prototype</strong><br>
+      Username: <strong>admin</strong> &nbsp;|&nbsp; Password: <strong>demo123</strong><br>
+      <span style="font-size: 10px; margin-top: 4px; display: block; color: var(--text-muted);">
+        Not secure — replace with backend authentication in Phase 2.
+      </span>
+    </div>
+
+    <form id="login-form" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="username">
+          Username <span class="required">*</span>
+        </label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          class="form-input"
+          placeholder="Enter username"
+          autocomplete="username"
+          required
+          aria-required="true"
+          aria-describedby="username-error"
+        >
+        <span class="form-error" id="username-error" role="alert"></span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="password">
+          Password <span class="required">*</span>
+        </label>
+        <div style="position: relative;">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-input"
+            placeholder="Enter password"
+            autocomplete="current-password"
+            required
+            aria-required="true"
+            aria-describedby="password-error"
+            style="padding-right: 48px;"
+          >
+          <button
+            type="button"
+            id="toggle-password"
+            style="position:absolute; right:12px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--text-muted); cursor:pointer; padding:4px; font-size:16px;"
+            aria-label="Toggle password visibility"
+          >👁</button>
+        </div>
+        <span class="form-error" id="password-error" role="alert"></span>
+      </div>
+
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-6);">
+        <label style="display: flex; align-items: center; gap: var(--space-2); cursor: pointer; font-size: var(--font-sm); color: var(--text-secondary);">
+          <input type="checkbox" id="remember" name="remember" style="width: 16px; height: 16px; accent-color: var(--accent);">
+          Remember me
+        </label>
+      </div>
+
+      <div id="login-error" role="alert" aria-live="polite" style="display:none; background: var(--danger-subtle); border: 1px solid rgba(239,68,68,0.3); border-radius: var(--radius); padding: var(--space-3) var(--space-4); margin-bottom: var(--space-5); font-size: var(--font-sm); color: var(--danger);">
+        Invalid username or password. (Demo: admin / demo123)
+      </div>
+
+      <button type="submit" id="login-btn" class="btn btn-primary w-full btn-lg" style="width: 100%;">
+        Sign In to Dashboard
+      </button>
+    </form>
+
+    <div style="text-align:center; margin-top: var(--space-6);">
+      <a href="../index.html" style="font-size: var(--font-sm); color: var(--text-muted); transition: color var(--transition);" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-muted)'">
+        ← Back to Public Website
+      </a>
+    </div>
+  </div>
+</div>
+
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Redirect if already authenticated
+  if (isAuthenticated()) {
+    window.location.href = 'dashboard.html';
+    return;
+  }
+
+  const form       = document.getElementById('login-form');
+  const loginBtn   = document.getElementById('login-btn');
+  const loginError = document.getElementById('login-error');
+  const togglePwd  = document.getElementById('toggle-password');
+  const passwordEl = document.getElementById('password');
+
+  // Toggle password visibility
+  togglePwd.addEventListener('click', function() {
+    const isText = passwordEl.type === 'text';
+    passwordEl.type = isText ? 'password' : 'text';
+    this.textContent = isText ? '👁' : '🙈';
+  });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    loginError.style.display = 'none';
+
+    const username = document.getElementById('username').value.trim();
+    const password = passwordEl.value;
+
+    // Validate
+    let valid = true;
+    if (!username) {
+      document.getElementById('username-error').textContent = 'Username is required.';
+      valid = false;
+    } else {
+      document.getElementById('username-error').textContent = '';
+    }
+    if (!password) {
+      document.getElementById('password-error').textContent = 'Password is required.';
+      valid = false;
+    } else {
+      document.getElementById('password-error').textContent = '';
+    }
+    if (!valid) return;
+
+    // Simulate loading
+    loginBtn.textContent = 'Signing in...';
+    loginBtn.disabled = true;
+
+    setTimeout(function() {
+      if (loginDemo(username, password)) {
+        window.location.href = 'dashboard.html';
+      } else {
+        loginError.style.display = 'block';
+        loginBtn.textContent = 'Sign In to Dashboard';
+        loginBtn.disabled = false;
+      }
+    }, 800);
+  });
+});
+</script>
+</body>
+</html>

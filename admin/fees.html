@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Fees & Pending | Fitness Club Tarsadi Admin</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body class="admin-body">
+
+<aside class="sidebar" id="sidebar" role="navigation" aria-label="Admin sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">G</div>
+      <div>
+        <div class="sidebar-logo-text">FITNESS CLUB TARSADI</div>
+        <div class="sidebar-logo-sub">Admin Panel</div>
+      </div>
+    </div>
+    <button class="sidebar-close" id="sidebar-close" aria-label="Close sidebar">✕</button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-section-label">MAIN</div>
+    <a href="dashboard.html"  class="sidebar-item" id="nav-dashboard">Dashboard</a>
+
+    <div class="sidebar-section-label">MEMBERS</div>
+    <a href="members.html"    class="sidebar-item" id="nav-members">Members</a>
+    <a href="attendance.html" class="sidebar-item" id="nav-attendance">Attendance</a>
+
+    <div class="sidebar-section-label">FINANCE</div>
+    <a href="fees.html"       class="sidebar-item active" id="nav-fees">Fees & Pending</a>
+    <a href="payments.html"   class="sidebar-item" id="nav-payments">Payments</a>
+    <a href="receipts.html"   class="sidebar-item" id="nav-receipts">Receipts</a>
+
+    <div class="sidebar-section-label">REPORTING</div>
+    <a href="reports.html"    class="sidebar-item" id="nav-reports">Monthly Reports</a>
+
+    <div class="sidebar-section-label">COMMUNICATION</div>
+    <a href="inquiries.html"  class="sidebar-item" id="nav-inquiries">Inquiries</a>
+
+    <div class="sidebar-section-label">SYSTEM</div>
+    <a href="settings.html"   class="sidebar-item" id="nav-settings">Settings</a>
+    <a href="../index.html"   class="sidebar-item" target="_blank">View Website</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="admin-profile">
+      <div class="admin-avatar" aria-hidden="true">AD</div>
+      <div class="admin-profile-info">
+        <div class="admin-profile-name">Admin</div>
+        <div class="admin-profile-role">Gym Manager</div>
+      </div>
+    </div>
+    <button class="sidebar-item" data-logout style="color: var(--danger);">
+      Logout
+    </button>
+  </div>
+</aside>
+<div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+<div class="admin-main">
+  <header class="admin-topbar" role="banner">
+    <div class="topbar-left">
+      <button class="topbar-menu-btn" id="topbar-menu-btn" aria-label="Open sidebar">☰</button>
+      <div><div class="topbar-title">Fees & Pending</div><div class="topbar-subtitle">Track outstanding and overdue fees</div></div>
+    </div>
+    <div class="topbar-right">
+      <div class="demo-badge" role="status"><span class="demo-dot" aria-hidden="true"></span>DEMO MODE</div>
+    </div>
+  </header>
+
+  <main class="admin-content">
+    <!-- Summary Stats -->
+    <div class="fee-summary" id="fee-summary">
+      <div class="mini-stat"><div class="mini-stat-value" id="fee-total-pending" style="color:var(--warning);">—</div><div class="mini-stat-label">Total Pending Amount</div></div>
+      <div class="mini-stat"><div class="mini-stat-value" id="fee-overdue-count" style="color:var(--danger);">—</div><div class="mini-stat-label">Overdue Count</div></div>
+      <div class="mini-stat"><div class="mini-stat-value" id="fee-pending-count" style="color:var(--info);">—</div><div class="mini-stat-label">Pending Count</div></div>
+      <div class="mini-stat"><div class="mini-stat-value" id="fee-collected" style="color:var(--success);">—</div><div class="mini-stat-label">Collected (All Time)</div></div>
+    </div>
+
+    <!-- Table -->
+    <div class="data-table-wrapper">
+      <div class="data-table-header">
+        <div class="data-table-title">Pending & Overdue Fees</div>
+        <div class="data-table-actions">
+          <select id="fee-filter" class="table-filter" aria-label="Filter">
+            <option value="all">All (Pending + Overdue)</option>
+            <option value="Pending">Pending Only</option>
+            <option value="Overdue">Overdue Only</option>
+          </select>
+          <div class="table-search" role="search">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="search" id="fee-search" placeholder="Search member…" aria-label="Search">
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="exportFeesCSV()">📥 Export CSV</button>
+          <button class="btn btn-primary btn-sm" id="bulk-remind-btn">💬 Bulk WhatsApp</button>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th><input type="checkbox" id="select-all" aria-label="Select all"></th>
+              <th>Member</th>
+              <th>Plan</th>
+              <th>Amount Due</th>
+              <th>Due Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="fees-tbody">
+            <tr><td colspan="7"><div class="empty-state"><span class="empty-state-icon">⏳</span><h3>Loading…</h3></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-pagination">
+        <div class="pagination-info" id="fees-info">Showing — fees</div>
+        <div></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- WhatsApp Modal -->
+<div class="modal-backdrop" id="whatsapp-modal" role="dialog" aria-modal="true">
+  <div class="modal modal-sm">
+    <div class="modal-header"><h2 class="modal-title">💬 WhatsApp Reminder</h2><button class="modal-close" data-modal-close aria-label="Close">✕</button></div>
+    <div class="modal-body">
+      <div class="whatsapp-header"><div class="whatsapp-icon">W</div><div><div style="font-weight:600;" id="wa-member-name">—</div><div style="font-size:var(--font-xs);color:var(--text-muted);" id="wa-member-phone">—</div></div></div>
+      <div class="whatsapp-preview" id="wa-message"></div>
+      <div class="card" style="background:var(--warning-subtle);border-color:rgba(245,158,11,0.3);padding:var(--space-4);font-size:var(--font-xs);color:var(--text-secondary);">
+        ⚠️ <strong>Demo Mode:</strong> Opens WhatsApp. Real automated messaging requires WhatsApp Business API (Phase 2).
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary btn-sm" data-modal-close>Cancel</button>
+      <a href="#" id="wa-send-btn" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Open WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/admin.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const payments = getPayments();
+  const members  = getMembers();
+
+  function getPendingRecords(filter) {
+    return payments
+      .filter(p => filter === 'all' ? (p.status === 'Pending' || p.status === 'Overdue') : p.status === filter)
+      .filter(p => {
+        const q = document.getElementById('fee-search')?.value?.toLowerCase() || '';
+        return !q || p.memberName.toLowerCase().includes(q) || p.memberId.toLowerCase().includes(q);
+      });
+  }
+
+  function renderFees(records) {
+    const tbody = document.getElementById('fees-tbody');
+    const infoEl = document.getElementById('fees-info');
+    if (!tbody) return;
+    if (infoEl) infoEl.textContent = `Showing ${records.length} fee(s)`;
+
+    if (records.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="7"><div class="empty-state"><span class="empty-state-icon">✅</span><h3>No Pending Fees</h3><p>All fees are up to date.</p></div></td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = records.map(p => {
+      const cls = p.status === 'Overdue' ? 'danger' : 'warning';
+      return `
+        <tr>
+          <td><input type="checkbox" class="fee-check" data-id="${p.memberId}" aria-label="Select ${p.memberName}"></td>
+          <td>
+            <div class="member-cell">
+              <div class="member-avatar" aria-hidden="true">${getInitials(p.memberName)}</div>
+              <div>
+                <div class="member-name">${p.memberName}</div>
+                <div class="member-id">${p.memberId}</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="badge badge-neutral">${p.plan}</span></td>
+          <td style="font-weight:700; color:var(--${cls});">${formatCurrency(p.amount)}</td>
+          <td>${formatDate(p.dueDate)}</td>
+          <td><span class="badge badge-${cls}">${p.status}</span></td>
+          <td>
+            <div class="table-actions">
+              <a href="member-profile.html?id=${p.memberId}" class="action-btn view" title="View Profile" aria-label="View ${p.memberName}">👁</a>
+              <button class="action-btn whatsapp" title="WhatsApp" onclick="openWAModal('${p.memberId}')" aria-label="WhatsApp ${p.memberName}">💬</button>
+              <button class="action-btn payment" title="Mark Paid" onclick="markPaid('${p.memberId}', '${p.id}')" aria-label="Mark paid for ${p.memberName}">✅</button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function updateStats() {
+    const all = payments;
+    const pending   = all.filter(p => p.status === 'Pending');
+    const overdue   = all.filter(p => p.status === 'Overdue');
+    const collected = all.filter(p => p.status === 'Paid').reduce((s, p) => s + p.amount, 0);
+    const pendingAmt = [...pending, ...overdue].reduce((s, p) => s + p.amount, 0);
+
+    document.getElementById('fee-total-pending').textContent = formatCurrency(pendingAmt);
+    document.getElementById('fee-overdue-count').textContent = overdue.length;
+    document.getElementById('fee-pending-count').textContent = pending.length;
+    document.getElementById('fee-collected').textContent     = formatCurrency(collected);
+  }
+
+  updateStats();
+  renderFees(getPendingRecords('all'));
+
+  document.getElementById('fee-filter')?.addEventListener('change', function() {
+    renderFees(getPendingRecords(this.value));
+  });
+
+  document.getElementById('fee-search')?.addEventListener('input', function() {
+    renderFees(getPendingRecords(document.getElementById('fee-filter').value));
+  });
+
+  document.getElementById('select-all')?.addEventListener('change', function() {
+    document.querySelectorAll('.fee-check').forEach(c => c.checked = this.checked);
+  });
+
+  document.getElementById('bulk-remind-btn')?.addEventListener('click', function() {
+    const checked = Array.from(document.querySelectorAll('.fee-check:checked'));
+    if (checked.length === 0) {
+      showToast('Select at least one member to send bulk reminder.', 'warning', 'No Selection');
+      return;
+    }
+    showToast(`Demo: Bulk WhatsApp reminder for ${checked.length} member(s). Real bulk messaging requires WhatsApp Business API (Phase 2).`, 'info', 'Demo Mode', 6000);
+  });
+
+  window.markPaid = function(memberId, paymentId) {
+    if (!confirm('Mark this fee as paid?')) return;
+    const pays = getPayments();
+    const rec = pays.find(p => p.memberId === memberId && (p.status === 'Pending' || p.status === 'Overdue'));
+    if (rec) { rec.status = 'Paid'; rec.date = '2026-08-15'; rec.method = 'Cash'; }
+    const mems = getMembers();
+    const idx = mems.findIndex(m => m.id === memberId);
+    if (idx >= 0) mems[idx].feeStatus = 'Paid';
+    savePayments(pays); saveMembers(mems);
+    renderFees(getPendingRecords(document.getElementById('fee-filter').value));
+    updateStats();
+    showToast('Fee marked as paid.', 'success', 'Updated');
+  };
+
+  window.openWAModal = function(memberId) {
+    const m = members.find(x => x.id === memberId);
+    const p = payments.find(x => x.memberId === memberId && (x.status === 'Pending' || x.status === 'Overdue'));
+    if (!m) return;
+    const msg = `Hello ${m.name},\n\nYour gym fee of ${p ? formatCurrency(p.amount) : '₹XXXX'} is *${p?.status || 'Pending'}*.\n\n📅 Due Date: ${p ? formatDate(p.dueDate) : '—'}\n\nPlease pay at your earliest.\n\nThank you.\n— Fitness Club Tarsadi`;
+    document.getElementById('wa-member-name').textContent  = m.name;
+    document.getElementById('wa-member-phone').textContent = m.phone;
+    document.getElementById('wa-message').textContent = msg;
+    document.getElementById('wa-send-btn').href = `https://wa.me/${m.phone}?text=${encodeURIComponent(msg)}`;
+    openModal('whatsapp-modal');
+  };
+});
+
+function exportFeesCSV() {
+  const rows = getPayments()
+    .filter(p => p.status === 'Pending' || p.status === 'Overdue')
+    .map(p => [p.id, p.memberName, p.memberId, p.plan, formatCurrency(p.amount), p.dueDate || '—', p.status]);
+  exportCSV(['Receipt ID', 'Member', 'ID', 'Plan', 'Amount', 'Due Date', 'Status'], rows, 'pending-fees.csv');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gallery — Fitness Club Tarsadi, Kosamba. Explore our strength training equipment, free weights, and cardio area.">
+  <title>Gallery | Fitness Club Tarsadi — Kosamba</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/></svg>
+      </div>
+      <div><div class="nav-logo-text">FITNESS CLUB</div><div class="nav-logo-sub">TARSADI</div></div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html"       class="nav-link">Home</a>
+      <a href="about.html"       class="nav-link">About</a>
+      <a href="facilities.html"  class="nav-link">Facilities</a>
+      <a href="membership.html"  class="nav-link">Membership</a>
+      <a href="gallery.html"     class="nav-link active">Gallery</a>
+      <a href="contact.html"     class="nav-link">Contact</a>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <a href="admin/login.html" class="nav-link admin-link">Admin</a>
+    </div>
+    <div class="nav-actions">
+      <a href="contact.html" class="nav-cta">Enquire Now</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html"       class="nav-link">Home</a>
+  <a href="about.html"       class="nav-link">About</a>
+  <a href="facilities.html"  class="nav-link">Facilities</a>
+  <a href="membership.html"  class="nav-link">Membership</a>
+  <a href="gallery.html"     class="nav-link active">Gallery</a>
+  <a href="contact.html"     class="nav-link">Contact</a>
+  <a href="admin/login.html" class="nav-link admin-link">Admin</a>
+</div>
+
+<main>
+  <section class="page-hero">
+    <div class="page-hero-bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="section-label" aria-hidden="true">Gym Atmosphere</div>
+      <h1 class="page-hero-title">Gym Gallery</h1>
+      <p class="page-hero-subtitle">A glimpse into our workout spaces and equipment in Tarsadi, Kosamba.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="gallery-heading">
+    <div class="container">
+      <div class="section-header centered" style="margin-bottom: var(--space-6);">
+        <h2 class="section-title" id="gallery-heading">Fitness Club Tarsadi</h2>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="gallery-filters" id="gallery-filters" role="tablist" style="display:flex; gap:var(--space-2); justify-content:center; flex-wrap:wrap; margin-bottom:var(--space-8);">
+        <button class="chart-tab active" data-filter="all" onclick="filterGallery('all', this)">All</button>
+        <button class="chart-tab" data-filter="equipment" onclick="filterGallery('equipment', this)">Equipment</button>
+        <button class="chart-tab" data-filter="cardio" onclick="filterGallery('cardio', this)">Cardio Suite</button>
+        <button class="chart-tab" data-filter="training" onclick="filterGallery('training', this)">Strength Area</button>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="gallery-grid" id="gallery-grid">
+        <!-- Rendered by JS -->
+      </div>
+
+      <div style="text-align:center; margin-top:var(--space-10);">
+        <p style="color:var(--text-muted); font-size:var(--font-sm); margin-bottom:var(--space-5);">Want to see the gym in person?</p>
+        <a href="https://maps.app.goo.gl/hK9i2N3yXx6edGAd6" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">Get Directions ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox" style="display:none;">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">✕</button>
+  <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous image">‹</button>
+  <button class="lightbox-next" id="lightbox-next" aria-label="Next image">›</button>
+  <div class="lightbox-content">
+    <div class="lightbox-img-wrapper" id="lightbox-img-wrapper">
+      <!-- Image shown here -->
+    </div>
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+</div>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Fitness Club Tarsadi. All rights reserved. Pgp Township, Tarsadi, Kosamba, Gujarat 394120.</p>
+      <div class="footer-bottom-links">
+        <a href="index.html"      class="footer-bottom-link">Home</a>
+        <a href="membership.html" class="footer-bottom-link">Membership</a>
+        <a href="contact.html"    class="footer-bottom-link">Contact</a>
+        <a href="admin/login.html" class="footer-bottom-link">Admin Login</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/navigation.js"></script>
+<script>
+const GALLERY_ITEMS = [
+  { id: 1, label: 'Main Workout Floor', category: 'equipment', image: 'assets/images/generated/hero_gym_studio.png' },
+  { id: 2, label: 'Heavy Weights Zone', category: 'training', image: 'assets/images/generated/facility_heavy_weights.png' },
+  { id: 3, label: 'Cardio Suite', category: 'cardio', image: 'assets/images/generated/facility_cardio_suite.png' },
+  { id: 4, label: 'Strength Equipment Racks', category: 'equipment', image: 'assets/images/generated/facility_heavy_weights.png' },
+  { id: 5, label: 'Free Weight Section', category: 'training', image: 'assets/images/generated/hero_gym_studio.png' },
+  { id: 6, label: 'Cardio Endurance Zone', category: 'cardio', image: 'assets/images/generated/facility_cardio_suite.png' },
+];
+
+let currentFilter = 'all';
+let visibleItems = [...GALLERY_ITEMS];
+let currentLightbox = 0;
+
+function filterGallery(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  visibleItems = filter === 'all' ? GALLERY_ITEMS : GALLERY_ITEMS.filter(i => i.category === filter);
+  renderGallery();
+}
+window.filterGallery = filterGallery;
+
+function renderGallery() {
+  const grid = document.getElementById('gallery-grid');
+  grid.innerHTML = visibleItems.map((item, idx) => `
+    <div class="gallery-item" onclick="openLightbox(${idx})" role="button" tabindex="0" aria-label="View ${item.label}" onkeydown="if(event.key==='Enter')openLightbox(${idx})">
+      <div style="height:220px; position:relative; overflow:hidden; border-radius:12px;">
+        <img src="${item.image}" alt="${item.label}" style="width:100%; height:100%; object-fit:cover; display:block;" loading="lazy">
+        <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(14,16,15,0.85) 0%, transparent 60%); display:flex; align-items:flex-end; padding:16px;">
+          <span style="color:#FFF; font-weight:700; font-size:var(--font-sm);">${item.label}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openLightbox(idx) {
+  currentLightbox = idx;
+  const item = visibleItems[idx];
+  const lb = document.getElementById('lightbox');
+  const wrapper = document.getElementById('lightbox-img-wrapper');
+  const caption = document.getElementById('lightbox-caption');
+  wrapper.innerHTML = `<img src="${item.image}" alt="${item.label}" style="max-width:100%; max-height:70vh; border-radius:12px; object-fit:contain;">`;
+  caption.textContent = item.label + ' — Fitness Club Tarsadi';
+  lb.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+document.getElementById('lightbox-close')?.addEventListener('click', function() {
+  document.getElementById('lightbox').style.display = 'none';
+  document.body.style.overflow = '';
+});
+document.getElementById('lightbox-prev')?.addEventListener('click', function() {
+  currentLightbox = (currentLightbox - 1 + visibleItems.length) % visibleItems.length;
+  openLightbox(currentLightbox);
+});
+document.getElementById('lightbox-next')?.addEventListener('click', function() {
+  currentLightbox = (currentLightbox + 1) % visibleItems.length;
+  openLightbox(currentLightbox);
+});
+document.getElementById('lightbox')?.addEventListener('click', function(e) {
+  if (e.target === this) { this.style.display = 'none'; document.body.style.overflow = ''; }
+});
+document.addEventListener('keydown', function(e) {
+  const lb = document.getElementById('lightbox');
+  if (lb.style.display === 'flex') {
+    if (e.key === 'Escape') { lb.style.display = 'none'; document.body.style.overflow = ''; }
+    if (e.key === 'ArrowLeft')  { currentLightbox = (currentLightbox - 1 + visibleItems.length) % visibleItems.length; openLightbox(currentLightbox); }
+    if (e.key === 'ArrowRight') { currentLightbox = (currentLightbox + 1) % visibleItems.length; openLightbox(currentLightbox); }
+  }
+});
+
+// Init
+renderGallery();
+</script>
+</body>
+</html>

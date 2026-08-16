@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Members | Fitness Club Tarsadi Admin</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body class="admin-body">
+
+<!-- Sidebar (same structure as dashboard) -->
+<aside class="sidebar" id="sidebar" role="navigation" aria-label="Admin sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">G</div>
+      <div>
+        <div class="sidebar-logo-text">FITNESS CLUB TARSADI</div>
+        <div class="sidebar-logo-sub">Admin Panel</div>
+      </div>
+    </div>
+    <button class="sidebar-close" id="sidebar-close" aria-label="Close sidebar">✕</button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-section-label">MAIN</div>
+    <a href="dashboard.html"  class="sidebar-item" id="nav-dashboard">Dashboard</a>
+
+    <div class="sidebar-section-label">MEMBERS</div>
+    <a href="members.html"    class="sidebar-item active" id="nav-members">Members</a>
+    <a href="attendance.html" class="sidebar-item" id="nav-attendance">Attendance</a>
+
+    <div class="sidebar-section-label">FINANCE</div>
+    <a href="fees.html"       class="sidebar-item" id="nav-fees">Fees & Pending</a>
+    <a href="payments.html"   class="sidebar-item" id="nav-payments">Payments</a>
+    <a href="receipts.html"   class="sidebar-item" id="nav-receipts">Receipts</a>
+
+    <div class="sidebar-section-label">REPORTING</div>
+    <a href="reports.html"    class="sidebar-item" id="nav-reports">Monthly Reports</a>
+
+    <div class="sidebar-section-label">COMMUNICATION</div>
+    <a href="inquiries.html"  class="sidebar-item" id="nav-inquiries">Inquiries</a>
+
+    <div class="sidebar-section-label">SYSTEM</div>
+    <a href="settings.html"   class="sidebar-item" id="nav-settings">Settings</a>
+    <a href="../index.html"   class="sidebar-item" target="_blank">View Website</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="admin-profile">
+      <div class="admin-avatar" aria-hidden="true">AD</div>
+      <div class="admin-profile-info">
+        <div class="admin-profile-name">Admin</div>
+        <div class="admin-profile-role">Gym Manager</div>
+      </div>
+    </div>
+    <button class="sidebar-item" data-logout style="color: var(--danger);">
+      Logout
+    </button>
+  </div>
+</aside>
+<div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+<div class="admin-main">
+  <header class="admin-topbar" role="banner">
+    <div class="topbar-left">
+      <button class="topbar-menu-btn" id="topbar-menu-btn" aria-label="Open sidebar">☰</button>
+      <div>
+        <div class="topbar-title">Members</div>
+        <div class="topbar-subtitle">Manage all gym members</div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-search" role="search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="search" id="global-search" placeholder="Search…" aria-label="Global search">
+      </div>
+      <div class="demo-badge" role="status">
+        <span class="demo-dot" aria-hidden="true"></span>
+        DEMO MODE
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-content">
+    <!-- Stats -->
+    <div class="mini-stats-grid" style="margin-bottom: var(--space-6);">
+      <div class="mini-stat">
+        <div class="mini-stat-value" id="stat-total">—</div>
+        <div class="mini-stat-label">Total Members</div>
+      </div>
+      <div class="mini-stat">
+        <div class="mini-stat-value" id="stat-active" style="color: var(--success);">—</div>
+        <div class="mini-stat-label">Active</div>
+      </div>
+      <div class="mini-stat">
+        <div class="mini-stat-value" id="stat-expiring" style="color: var(--warning);">—</div>
+        <div class="mini-stat-label">Expiring (30d)</div>
+      </div>
+      <div class="mini-stat">
+        <div class="mini-stat-value" id="stat-irregular" style="color: var(--danger);">—</div>
+        <div class="mini-stat-label">Irregular</div>
+      </div>
+    </div>
+
+    <!-- Members Table -->
+    <div class="data-table-wrapper">
+      <div class="data-table-header">
+        <div class="data-table-title">All Members</div>
+        <div class="data-table-actions">
+          <div class="table-search" role="search">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="search" id="member-search" placeholder="Search by name, ID, phone…" aria-label="Search members">
+          </div>
+          <select id="status-filter" class="table-filter" aria-label="Filter by status">
+            <option value="all">All Status</option>
+            <option value="active">Active</option>
+            <option value="expired">Expired</option>
+            <option value="irregular">Irregular</option>
+            <option value="expiring">Expiring Soon</option>
+            <option value="pending">Pending Fee</option>
+            <option value="overdue">Overdue Fee</option>
+          </select>
+          <select id="membership-filter" class="table-filter" aria-label="Filter by membership">
+            <option value="all">All Plans</option>
+            <option value="Monthly">Monthly</option>
+            <option value="Quarterly">Quarterly</option>
+            <option value="Half-Yearly">Half-Yearly</option>
+            <option value="Annual">Annual</option>
+          </select>
+          <button class="btn btn-primary btn-sm" data-modal-open="add-member-modal" id="add-member-btn">
+            ➕ Add Member
+          </button>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th class="sortable" data-sort="id">Member ID</th>
+              <th class="sortable" data-sort="name">Name</th>
+              <th>Phone</th>
+              <th>Membership</th>
+              <th class="sortable" data-sort="joinDate">Joined</th>
+              <th class="sortable" data-sort="expiryDate">Expiry</th>
+              <th>Fee Status</th>
+              <th>Attendance</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="members-tbody">
+            <tr><td colspan="10"><div class="empty-state"><span class="empty-state-icon" aria-hidden="true">⏳</span><h3>Loading…</h3></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-pagination">
+        <div class="pagination-info" id="pagination-info">Showing — members</div>
+        <div class="pagination-controls" id="pagination" role="navigation" aria-label="Pagination"></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Add Member Modal -->
+<div class="modal-backdrop" id="add-member-modal" role="dialog" aria-modal="true" aria-labelledby="add-member-title">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h2 class="modal-title" id="add-member-title">Add New Member</h2>
+      <button class="modal-close" data-modal-close aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="add-member-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="add-name">Full Name <span class="required">*</span></label>
+            <input type="text" id="add-name" class="form-input" placeholder="Enter full name" required aria-required="true">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="add-phone">Phone <span class="required">*</span></label>
+            <input type="tel" id="add-phone" class="form-input" placeholder="10-digit phone number" required aria-required="true">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="add-email">Email</label>
+            <input type="email" id="add-email" class="form-input" placeholder="Optional">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="add-plan">Membership Plan <span class="required">*</span></label>
+            <select id="add-plan" class="form-select" required aria-required="true">
+              <option value="">Select plan</option>
+              <option value="Monthly">Monthly</option>
+              <option value="Quarterly">Quarterly</option>
+              <option value="Half-Yearly">Half-Yearly</option>
+              <option value="Annual">Annual</option>
+            </select>
+          </div>
+        </div>
+        <div class="card" style="background: var(--warning-subtle); border-color: rgba(245,158,11,0.3); padding: var(--space-4); font-size: var(--font-xs); color: var(--text-secondary);">
+          ⚠️ <strong>Demo Mode:</strong> Member will be saved to localStorage. Data resets on browser clear.
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary btn-sm" data-modal-close>Cancel</button>
+      <button class="btn btn-primary btn-sm" onclick="document.getElementById('add-member-form').dispatchEvent(new Event('submit'))">
+        Add Member
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- WhatsApp Modal -->
+<div class="modal-backdrop" id="whatsapp-modal" role="dialog" aria-modal="true" aria-labelledby="wa-modal-title">
+  <div class="modal modal-sm">
+    <div class="modal-header">
+      <h2 class="modal-title" id="wa-modal-title">💬 WhatsApp Reminder</h2>
+      <button class="modal-close" data-modal-close aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="whatsapp-header">
+        <div class="whatsapp-icon" aria-hidden="true">W</div>
+        <div>
+          <div style="font-weight: 600;" id="wa-member-name">—</div>
+          <div style="font-size: var(--font-xs); color:var(--text-muted);" id="wa-member-phone">—</div>
+        </div>
+      </div>
+      <div class="whatsapp-preview" id="wa-message"></div>
+      <div class="card" style="background: var(--warning-subtle); border-color: rgba(245,158,11,0.3); padding: var(--space-4); font-size: var(--font-xs); color: var(--text-secondary);">
+        ⚠️ <strong>Demo Mode:</strong> Opens WhatsApp with pre-filled message. Real automated messaging requires WhatsApp Business API (Phase 2).
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary btn-sm" data-modal-close>Cancel</button>
+      <a href="#" id="wa-send-btn" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Open WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<!-- Payment Modal -->
+<div class="modal-backdrop" id="payment-modal" role="dialog" aria-modal="true" aria-labelledby="payment-modal-title">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h2 class="modal-title" id="payment-modal-title">💳 Record Payment</h2>
+      <button class="modal-close" data-modal-close aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="payment-member-info" style="margin-bottom: var(--space-5); padding: var(--space-4); background: var(--bg-input); border-radius: var(--radius); font-size: var(--font-sm); color: var(--text-secondary);">
+        Recording payment for: <strong id="payment-member-name" style="color:var(--accent);">—</strong>
+      </div>
+      <form id="payment-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="payment-member-select">Member <span class="required">*</span></label>
+            <select id="payment-member-select" class="form-select" required aria-required="true">
+              <option value="">Select member</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="payment-amount">Amount (₹) <span class="required">*</span></label>
+            <input type="number" id="payment-amount" class="form-input" placeholder="Enter amount" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="payment-method">Payment Method <span class="required">*</span></label>
+            <select id="payment-method" class="form-select" required>
+              <option value="">Select method</option>
+              <option value="Cash">Cash</option>
+              <option value="UPI">UPI</option>
+              <option value="Card">Card</option>
+              <option value="Bank Transfer">Bank Transfer</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="payment-ref">Reference / Transaction ID</label>
+            <input type="text" id="payment-ref" class="form-input" placeholder="Optional">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="payment-notes">Notes</label>
+          <textarea id="payment-notes" class="form-textarea" placeholder="Optional notes" style="min-height:80px;"></textarea>
+        </div>
+        <div class="card" style="background: var(--warning-subtle); border-color: rgba(245,158,11,0.3); padding: var(--space-4); font-size: var(--font-xs); color: var(--text-secondary);">
+          ⚠️ <strong>Demo Mode:</strong> Payment saved to localStorage. Receipt will be generated.
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary btn-sm" data-modal-close>Cancel</button>
+      <button class="btn btn-primary btn-sm" id="record-payment-btn">Record Payment</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/admin.js"></script>
+<script src="../js/members.js"></script>
+<script>
+// Populate member select in payment modal
+document.addEventListener('DOMContentLoaded', function() {
+  const sel = document.getElementById('payment-member-select');
+  if (sel) {
+    const members = getMembers();
+    sel.innerHTML = '<option value="">Select member</option>' +
+      members.map(m => `<option value="${m.id}">${m.name} (${m.id})</option>`).join('');
+  }
+
+  sel?.addEventListener('change', function() {
+    const m = getMemberById(this.value);
+    if (m) document.getElementById('payment-member-name').textContent = m.name;
+  });
+
+  document.getElementById('record-payment-btn')?.addEventListener('click', function() {
+    const memberId = document.getElementById('payment-member-select').value;
+    const amount   = document.getElementById('payment-amount').value;
+    const method   = document.getElementById('payment-method').value;
+    const ref      = document.getElementById('payment-ref').value;
+    const notes    = document.getElementById('payment-notes').value;
+
+    if (!memberId || !amount || !method) {
+      showToast('Please fill in all required fields.', 'danger', 'Validation Error');
+      return;
+    }
+
+    const payments = getPayments();
+    const receiptId = generateReceiptId();
+    const member = getMemberById(memberId);
+
+    // Update any pending payment for this member
+    const pending = payments.find(p => p.memberId === memberId && (p.status === 'Pending' || p.status === 'Overdue'));
+    if (pending) {
+      pending.status = 'Paid';
+      pending.date   = '2026-08-15';
+      pending.method = method;
+      pending.reference = ref || receiptId;
+      pending.id = receiptId;
+    } else {
+      // Add new payment record
+      payments.push({
+        id: receiptId, memberId, memberName: member?.name || '—',
+        date: '2026-08-15', amount: Number(amount), method,
+        reference: ref, plan: member?.membership || '—',
+        status: 'Paid', dueDate: null,
+      });
+    }
+
+    // Update member fee status
+    const members = getMembers();
+    const idx = members.findIndex(m => m.id === memberId);
+    if (idx >= 0) members[idx].feeStatus = 'Paid';
+
+    savePayments(payments);
+    saveMembers(members);
+
+    closeModal('payment-modal');
+    document.getElementById('payment-form')?.reset();
+    document.getElementById('payment-member-name').textContent = '—';
+
+    // Refresh table
+    allMembers = getMembers();
+    applyFilter(getActiveFilter(), document.getElementById('member-search')?.value || '');
+
+    showToast(`Payment of ₹${Number(amount).toLocaleString('en-IN')} recorded. Receipt: ${receiptId}`, 'success', 'Payment Recorded');
+  });
+});
+</script>
+</body>
+</html>
