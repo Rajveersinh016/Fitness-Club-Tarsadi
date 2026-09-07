@@ -1,6 +1,6 @@
 /**
- * GYM MANAGEMENT PLATFORM — MOCK DATA
- * ====================================
+ * GYM MANAGEMENT PLATFORM — MOCK DATA (J3 FITNESS STUDIO)
+ * =========================================================
  * All data here is DEMO/SYNTHETIC data.
  * Replace with real data after backend integration.
  *
@@ -14,14 +14,14 @@
    Replace placeholder values with real gym information.
    ============================================================ */
 const GYM_CONFIG = {
-  name:         'Fitness Club Tarsadi',
+  name:         'J3 Fitness Studio',
   tagline:      'Train Hard. Live Strong.',
-  description:  'A dedicated gym facility in Kosamba focused on strength training, conditioning, and helping members achieve their personal fitness goals through consistent workouts.',
-  phone:        'Contact details available at gym',
+  description:  'J3 Fitness Studio is a local fitness destination in Tarsadi, Kosamba, created for people who want a practical and motivating place to train. Strength, conditioning, and fitness support for everyone.',
+  phone:        '+91 99258 62362',
   email:        '',
-  address:      'Pgp Township, Kim - Kosamba Rd, Opp. Vaibhav Bungalows, Tarsadi, Kosamba, Gujarat 394120',
-  mapsUrl:      'https://maps.app.goo.gl/hK9i2N3yXx6edGAd6',
-  instagram:    'https://www.instagram.com/fitnessclubtarsadi/',
+  address:      'Shop No. 309–318, Shrddha Plaza, Near V. S. Patel School, Tarsadi, Kosamba, Gujarat 394120',
+  mapsUrl:      'https://maps.app.goo.gl/LFLDBzjK2vURk8VM6',
+  instagram:    '',
   facebook:     '',
   whatsapp:     '',
   currency:     '₹',
@@ -30,8 +30,8 @@ const GYM_CONFIG = {
       id: 'monthly',
       name: 'Monthly Plan',
       duration: '1 Month',
-      price: 'Contact for pricing',
-      priceNote: 'details available at gym',
+      price: 'Enquire for Pricing',
+      priceNote: 'Contact gym for current pricing',
       featured: false,
       features: [
         'Full Gym Access',
@@ -43,9 +43,22 @@ const GYM_CONFIG = {
       id: 'quarterly',
       name: 'Quarterly Plan',
       duration: '3 Months',
-      price: 'Contact for pricing',
-      priceNote: 'details available at gym',
+      price: 'Enquire for Pricing',
+      priceNote: 'Contact gym for current pricing',
       featured: true,
+      features: [
+        'Full Gym Access',
+        'Strength & Cardio Equipment',
+        'Locker Room Access',
+      ]
+    },
+    {
+      id: 'halfyearly',
+      name: 'Half-Yearly Plan',
+      duration: '6 Months',
+      price: 'Enquire for Pricing',
+      priceNote: 'Contact gym for current pricing',
+      featured: false,
       features: [
         'Full Gym Access',
         'Strength & Cardio Equipment',
@@ -56,8 +69,8 @@ const GYM_CONFIG = {
       id: 'annual',
       name: 'Annual Plan',
       duration: '12 Months',
-      price: 'Contact for pricing',
-      priceNote: 'details available at gym',
+      price: 'Enquire for Pricing',
+      priceNote: 'Contact gym for current pricing',
       featured: false,
       features: [
         'Full Gym Access',
@@ -67,8 +80,8 @@ const GYM_CONFIG = {
     }
   ],
   openingHours: [
-    { day: 'Monday - Saturday', time: 'Contact the gym for current timings' },
-    { day: 'Sunday',            time: 'Contact the gym for current timings' },
+    { day: 'Monday – Saturday', time: '6:00 AM – 9:30 PM' },
+    { day: 'Sunday',            time: 'Contact gym for Sunday hours' },
   ],
   facilities: [
     {
@@ -79,7 +92,7 @@ const GYM_CONFIG = {
     },
     {
       id: 2,
-      name: 'Cardio Suite',
+      name: 'Cardio Training',
       icon: '🏃',
       description: 'Cardio equipment designed to support stamina and endurance conditioning.',
     },
@@ -87,11 +100,11 @@ const GYM_CONFIG = {
       id: 3,
       name: 'Free Weights Area',
       icon: '💪',
-      description: 'Comprehensive set of dumbbells, barbells, and plates for strength workouts.',
+      description: 'Comprehensive set of dumbbells, barbells, and plates for free weight strength workouts.',
     },
     {
       id: 4,
-      name: 'Functional Fitness Zone',
+      name: 'Functional Training',
       icon: '⚡',
       description: 'Space for functional movement, bodyweight exercises, and mobility work.',
     }
@@ -102,13 +115,13 @@ const GYM_CONFIG = {
       name: 'Trainer Profiles Coming Soon',
       role: 'Fitness Coach',
       specialization: 'Strength & Conditioning',
-      experience: 'Certified Training',
+      experience: 'Fitness Training',
       photo: null,
     }
   ],
   stats: [
-    { value: 'Fitness Club', label: 'Tarsadi', note: '' },
-    { value: 'Kosamba',     label: 'Gujarat', note: '' },
+    { value: 'J3 Fitness', label: 'Tarsadi, Kosamba', note: '' },
+    { value: 'Gujarat',    label: '394120', note: '' },
   ]
 };
 

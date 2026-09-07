@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex">
-  <title>Inquiries | Fitness Club Tarsadi Admin</title>
+  <title>Inquiries | J3 Fitness Studio Admin</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/admin.css">
   <link rel="stylesheet" href="../css/responsive.css">
@@ -16,7 +16,7 @@
     <div class="sidebar-logo">
       <div class="sidebar-logo-icon">G</div>
       <div>
-        <div class="sidebar-logo-text">FITNESS CLUB TARSADI</div>
+        <div class="sidebar-logo-text">J3 FITNESS STUDIO</div>
         <div class="sidebar-logo-sub">Admin Panel</div>
       </div>
     </div>
@@ -230,7 +230,7 @@ document.addEventListener('DOMContentLoaded', function() {
   window.openInqWhatsApp = function(id) {
     const i = getInquiries().find(x => x.id === id);
     if (!i) return;
-    const msg = `Hello ${i.name},\n\nThank you for your interest in Fitness Club Tarsadi!\n\nYou enquired about our *${i.plan}* membership.\n\nWe'd love to have you visit our gym. Please feel free to drop by at your convenience.\n\nAddress: Pgp Township, Kim - Kosamba Rd, Tarsadi, Kosamba, Gujarat\n\n— Fitness Club Tarsadi Team`;
+    const msg = `Hello ${i.name},\n\nThank you for your interest in J3 Fitness Studio!\n\nYou enquired about our *${i.plan}* membership.\n\nWe'd love to have you visit our gym. Please feel free to drop by at your convenience.\n\nAddress: Shop No. 309–318, Shrddha Plaza, Tarsadi, Kosamba, Gujarat\n\n— J3 Fitness Studio Team`;
     window.open(`https://wa.me/${i.phone}?text=${encodeURIComponent(msg)}`, '_blank');
   };
 

@@ -1,5 +1,5 @@
 /* ============================================================
-   SHARED SIDEBAR LOADER (STRIVE FITNESS CLUB System)
+   SHARED SIDEBAR LOADER (J3 FITNESS STUDIO Admin System)
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -57,8 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/></svg>
         </div>
         <div>
-          <div class="sidebar-logo-text">FITNESS CLUB</div>
-          <div class="sidebar-logo-sub">TARSADI</div>
+          <div class="sidebar-logo-text">J3 FITNESS</div>
+          <div class="sidebar-logo-sub">STUDIO</div>
         </div>
       </a>
       <button class="sidebar-close" id="sidebar-close-btn" aria-label="Close sidebar">✕</button>

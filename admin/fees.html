@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex">
-  <title>Fees & Pending | Fitness Club Tarsadi Admin</title>
+  <title>Fees & Pending | J3 Fitness Studio Admin</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/admin.css">
   <link rel="stylesheet" href="../css/responsive.css">
@@ -16,7 +16,7 @@
     <div class="sidebar-logo">
       <div class="sidebar-logo-icon">G</div>
       <div>
-        <div class="sidebar-logo-text">FITNESS CLUB TARSADI</div>
+        <div class="sidebar-logo-text">J3 FITNESS STUDIO</div>
         <div class="sidebar-logo-sub">Admin Panel</div>
       </div>
     </div>
@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const m = members.find(x => x.id === memberId);
     const p = payments.find(x => x.memberId === memberId && (x.status === 'Pending' || x.status === 'Overdue'));
     if (!m) return;
-    const msg = `Hello ${m.name},\n\nYour gym fee of ${p ? formatCurrency(p.amount) : '₹XXXX'} is *${p?.status || 'Pending'}*.\n\n📅 Due Date: ${p ? formatDate(p.dueDate) : '—'}\n\nPlease pay at your earliest.\n\nThank you.\n— Fitness Club Tarsadi`;
+    const msg = `Hello ${m.name},\n\nYour gym fee of ${p ? formatCurrency(p.amount) : '₹XXXX'} is *${p?.status || 'Pending'}*.\n\n📅 Due Date: ${p ? formatDate(p.dueDate) : '—'}\n\nPlease pay at your earliest.\n\nThank you.\n— J3 Fitness Studio`;
     document.getElementById('wa-member-name').textContent  = m.name;
     document.getElementById('wa-member-phone').textContent = m.phone;
     document.getElementById('wa-message').textContent = msg;

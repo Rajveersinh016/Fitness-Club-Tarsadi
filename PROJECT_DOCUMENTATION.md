@@ -1,10 +1,10 @@
-# Fitness Club Tarsadi — Project Documentation & Overview
+# J3 Fitness Studio — Project Documentation & Overview
 
 ---
 
 ## 📌 Executive Summary
 
-**Fitness Club Tarsadi** is a comprehensive, production-ready website and Gym Management System designed for a modern fitness facility located in Kosamba, Gujarat. 
+**J3 Fitness Studio** is a comprehensive, production-ready website and Gym Management System designed for a modern fitness facility located in Kosamba, Gujarat. 
 
 The project consists of two core components:
 1. **Public Website**: A modern, high-converting public platform for prospective and current members to explore equipment, facilities, membership options, location, and submit inquiries.
@@ -14,10 +14,10 @@ The project consists of two core components:
 
 ## 🏢 Business & Location Profile
 
-- **Official Name**: Fitness Club Tarsadi
-- **Exact Address**: Pgp Township, Kim - Kosamba Rd, opp. vaibhav bungalows, Tarsadi, Kosamba, Gujarat 394120
-- **Instagram**: [https://www.instagram.com/fitnessclubtarsadi/](https://www.instagram.com/fitnessclubtarsadi/)
-- **Google Maps Pin**: [https://maps.app.goo.gl/hK9i2N3yXx6edGAd6](https://maps.app.goo.gl/hK9i2N3yXx6edGAd6)
+- **Official Name**: J3 Fitness Studio
+- **Exact Address**: Shop No. 309-318, Shrddha Plaza, Near V. S. Patel School, Tarsadi, Kosamba, Gujarat 394120
+- **Instagram**: [https://www.instagram.com/j3fitnessstudio/](https://www.instagram.com/j3fitnessstudio/)
+- **Google Maps Pin**: [https://maps.app.goo.gl/LFLDBzjK2vURk8VM6](https://maps.app.goo.gl/LFLDBzjK2vURk8VM6)
 
 ---
 
@@ -51,15 +51,15 @@ The application uses an athletic, high-contrast dark color palette:
 ## 🌐 Public Website Architecture (`/`)
 
 ### 1. Homepage (`index.html`)
-- **Hero Section**: Eyebrow badge (`FITNESS CLUB TARSADI`), main headline (`TRAIN HARD. LIVE STRONG.`), grounded stats strip (`Strength Zone`, `Cardio Suite`, `Kosamba Location`), and a glassmorphism address card with direct Google Maps navigation.
+- **Hero Section**: Eyebrow badge (`J3 FITNESS STUDIO`), main headline (`TRAIN HARD. LIVE STRONG.`), grounded stats strip (`Strength Zone`, `Cardio Suite`, `Kosamba Location`), and a glassmorphism address card with direct Google Maps navigation.
 - **Facilities Section**: Highlights core equipment areas including heavy weight racks, cable stations, cardio machines, and free weights.
 - **Studio Gallery**: Interactive preview connected to high-resolution photorealistic gym studio assets.
 - **Membership Plans**: Displays available membership options with "Contact for pricing".
 - **Location & Google Maps Card**: Full address display with one-click Google Maps directions.
-- **Footer**: Includes copyright `© 2026 Fitness Club Tarsadi`, address, and Instagram link.
+- **Footer**: Includes copyright `© 2026 J3 Fitness Studio`, address, and Instagram link.
 
 ### 2. About Us (`about.html`)
-- Dedicated page detailing the philosophy of Fitness Club Tarsadi.
+- Dedicated page detailing the philosophy of J3 Fitness Studio.
 - Focus on consistency, workout form, and building a supportive fitness community in Kosamba.
 
 ### 3. Facilities (`facilities.html`)
@@ -144,7 +144,7 @@ The application uses an athletic, high-contrast dark color palette:
 ```
 Fitness Club Gym/
 ├── index.html                  # Public Homepage
-├── about.html                  # About Fitness Club Tarsadi
+├── about.html                  # About J3 Fitness Studio
 ├── facilities.html             # Gym Facilities & Equipment
 ├── membership.html             # Membership Plans & FAQ
 ├── gallery.html                # Photo Gallery & Lightbox
@@ -210,5 +210,5 @@ Fitness Club Gym/
 
 ## 📄 License & Ownership
 
-© 2026 **Fitness Club Tarsadi**. All rights reserved.  
-Pgp Township, Kim - Kosamba Rd, opp. vaibhav bungalows, Tarsadi, Kosamba, Gujarat 394120.
+© 2026 **J3 Fitness Studio**. All rights reserved.  
+Shop No. 309-318, Shrddha Plaza, Near V. S. Patel School, Tarsadi, Kosamba, Gujarat 394120.

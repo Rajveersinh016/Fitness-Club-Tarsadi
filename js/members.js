@@ -274,7 +274,7 @@ window.openWAModal = function(memberId) {
   const payment  = payments.find(p => p.memberId === memberId && (p.status === 'Pending' || p.status === 'Overdue'));
   const amount   = payment ? formatCurrency(payment.amount) : '₹XXXX';
   const due      = payment ? formatDate(payment.dueDate) : 'As per plan';
-  const message  = `Hello ${member.name},\n\nYour gym membership fee of ${amount} is currently *${payment?.status || 'Pending'}*.\n\n📅 Due Date: ${due}\n🏋️ Plan: ${member.membership}\n\nPlease complete your payment at your earliest convenience.\n\nThank you.\n— Fitness Club Tarsadi`;
+  const message  = `Hello ${member.name},\n\nYour gym membership fee of ${amount} is currently *${payment?.status || 'Pending'}*.\n\n📅 Due Date: ${due}\n🏋️ Plan: ${member.membership}\n\nPlease complete your payment at your earliest convenience.\n\nThank you.\n— J3 Fitness Studio`;
 
   const nameEl   = document.getElementById('wa-member-name');
   const phoneEl  = document.getElementById('wa-member-phone');

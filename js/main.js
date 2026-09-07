@@ -275,7 +275,7 @@ window.showBiometricModal = function() {
 
 window.sendWhatsAppReminder = function(memberName, amount, phone) {
   const cleanPhone = String(phone || '').replace(/\D/g, '') || '919876543210';
-  const msg = encodeURIComponent(`Hello ${memberName},\n\nYour gym membership fee of ₹${amount} is currently pending.\n\nPlease complete your payment at your earliest convenience.\n\nThank you.\n\n— Fitness Club Tarsadi`);
+  const msg = encodeURIComponent(`Hello ${memberName},\n\nYour gym membership fee of ₹${amount} is currently pending.\n\nPlease complete your payment at your earliest convenience.\n\nThank you.\n\n— J3 Fitness Studio`);
   window.open(`https://wa.me/${cleanPhone}?text=${msg}`, '_blank');
   window.showToast({
     type: 'info',
@@ -285,7 +285,7 @@ window.sendWhatsAppReminder = function(memberName, amount, phone) {
 };
 
 window.sendEmailNotice = function(email, subject, body) {
-  const mailtoUrl = `mailto:${email || ''}?subject=${encodeURIComponent(subject || 'Receipt — Fitness Club Tarsadi')}&body=${encodeURIComponent(body || 'Thank you for your payment.')}`;
+  const mailtoUrl = `mailto:${email || ''}?subject=${encodeURIComponent(subject || 'Receipt — J3 Fitness Studio')}&body=${encodeURIComponent(body || 'Thank you for your payment.')}`;
   window.open(mailtoUrl, '_blank');
   window.showToast({
     type: 'info',

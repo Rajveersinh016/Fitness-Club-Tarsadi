@@ -1,13 +1,13 @@
-# Fitness Club Tarsadi
+# J3 Fitness Studio
 
 > **Official Website & Management Dashboard Prototype**  
-> Location: Pgp Township, Kim - Kosamba Rd, opp. vaibhav bungalows, Tarsadi, Kosamba, Gujarat 394120
+> Location: Shop No. 309-318, Shrddha Plaza, Near V. S. Patel School, Tarsadi, Kosamba, Gujarat 394120
 
 ---
 
 ## 📌 Project Overview
 
-**Fitness Club Tarsadi** is a lightweight, responsive, multi-page public gym website coupled with a feature-rich Gym Management Admin Portal prototype. Built strictly with vanilla web standards, it offers a zero-dependency frontend experience for members and gym administrators.
+**J3 Fitness Studio** is a lightweight, responsive, multi-page public gym website coupled with a feature-rich Gym Management Admin Portal prototype. Built strictly with vanilla web standards, it offers a zero-dependency frontend experience for members and gym administrators.
 
 ---
 
@@ -64,7 +64,7 @@ npx serve .
 ```
 Fitness Club Gym/
 ├── index.html                  # Main Public Landing Page
-├── about.html                  # About Fitness Club Tarsadi
+├── about.html                  # About J3 Fitness Studio
 ├── facilities.html             # Equipment & Gym Zones
 ├── membership.html             # Gym Plans & Pricing Options
 ├── gallery.html                # Interactive Lightbox Gallery
@@ -116,7 +116,7 @@ This repository is structured for static deployment on **Vercel** or **GitHub Pa
 
 ## 📞 Gym Details
 
-- **Name**: Fitness Club Tarsadi
-- **Address**: Pgp Township, Kim - Kosamba Rd, opp. vaibhav bungalows, Tarsadi, Kosamba, Gujarat 394120
-- **Google Maps**: [Location Pin](https://maps.app.goo.gl/hK9i2N3yXx6edGAd6)
-- **Instagram**: [@fitnessclubtarsadi](https://www.instagram.com/fitnessclubtarsadi/)
+- **Name**: J3 Fitness Studio
+- **Address**: Shop No. 309-318, Shrddha Plaza, Near V. S. Patel School, Tarsadi, Kosamba, Gujarat 394120
+- **Google Maps**: [Location Pin](https://maps.app.goo.gl/LFLDBzjK2vURk8VM6)
+- **Instagram**: [@j3fitnessstudio](https://www.instagram.com/j3fitnessstudio/)

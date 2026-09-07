@@ -1,4 +1,4 @@
-# Fitness Club Tarsadi — Production & Vercel Deployment Checklist
+# J3 Fitness Studio — Production & Vercel Deployment Checklist
 
 This document verifies pre-deployment audit status prior to pushing to GitHub and deploying to Vercel.
 
@@ -12,7 +12,7 @@ This document verifies pre-deployment audit status prior to pushing to GitHub an
 - [x] **Console Clean**: 0 Uncaught SyntaxErrors, ReferenceErrors, or TypeErrors across all pages.
 - [x] **Network Clean**: 0 broken asset paths, 404s, or missing images.
 - [x] **Images Verified**: All facility images present in `assets/images/generated/` with exact filename case matching (`facility_cardio_suite.png`, `facility_heavy_weights.png`, `hero_gym_studio.png`).
-- [x] **Links Verified**: Navigation links, Google Maps pin (`https://maps.app.goo.gl/hK9i2N3yXx6edGAd6`), Instagram (`https://www.instagram.com/fitnessclubtarsadi/`), and admin deep links checked.
+- [x] **Links Verified**: Navigation links, Google Maps pin (`https://maps.app.goo.gl/LFLDBzjK2vURk8VM6`), Instagram (`https://www.instagram.com/j3fitnessstudio/`), and admin deep links checked.
 - [x] **Forms Verified**: Public inquiry form & Admin forms validate required inputs, store data to LocalStorage, and emit feedback toasts.
 - [x] **Modals Verified**: Modal system (Add Member, Record Payment, WhatsApp, Receipt, Gallery Lightbox) opens properly, locks background scroll, traps focus, and closes via Close button, Backdrop click, or ESC key.
 - [x] **Tables Verified**: All admin tables wrapped in `.table-responsive` containers preventing layout breakage.

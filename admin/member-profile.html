@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex">
-  <title>Member Profile | Fitness Club Tarsadi Admin</title>
+  <title>Member Profile | J3 Fitness Studio Admin</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/admin.css">
   <link rel="stylesheet" href="../css/responsive.css">
@@ -16,7 +16,7 @@
     <div class="sidebar-logo">
       <div class="sidebar-logo-icon">G</div>
       <div>
-        <div class="sidebar-logo-text">FITNESS CLUB TARSADI</div>
+        <div class="sidebar-logo-text">J3 FITNESS STUDIO</div>
         <div class="sidebar-logo-sub">Admin Panel</div>
       </div>
     </div>
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const feeCls   = member.feeStatus === 'Paid' ? 'success' : member.feeStatus === 'Overdue' ? 'danger' : 'warning';
   const statCls  = member.status === 'Active' ? 'success' : member.status === 'Expired' ? 'danger' : 'warning';
 
-  document.title = `${member.name} — Fitness Club Tarsadi Admin`;
+  document.title = `${member.name} — J3 Fitness Studio Admin`;
 
   content.innerHTML = `
     <!-- Profile Header -->
@@ -328,7 +328,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const m = members.find(x => x.id === mId);
     if (!m) return;
     const p = getPayments().find(x => x.memberId === mId && (x.status === 'Pending' || x.status === 'Overdue'));
-    const msg = `Hello ${m.name},\n\nYour gym membership fee of ${p ? formatCurrency(p.amount) : '₹XXXX'} is currently *${p?.status || 'Pending'}*.\n\n📅 Due Date: ${p ? formatDate(p.dueDate) : 'As per plan'}\n🏋️ Plan: ${m.membership}\n\nPlease complete your payment at your earliest convenience.\n\nThank you.\n— Fitness Club Tarsadi`;
+    const msg = `Hello ${m.name},\n\nYour gym membership fee of ${p ? formatCurrency(p.amount) : '₹XXXX'} is currently *${p?.status || 'Pending'}*.\n\n📅 Due Date: ${p ? formatDate(p.dueDate) : 'As per plan'}\n🏋️ Plan: ${m.membership}\n\nPlease complete your payment at your earliest convenience.\n\nThank you.\n— J3 Fitness Studio`;
     document.getElementById('wa-member-name').textContent  = m.name;
     document.getElementById('wa-member-phone').textContent = m.phone;
     document.getElementById('wa-message').textContent = msg;
@@ -346,7 +346,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('receipt-content').innerHTML = `
       <div class="receipt-preview" id="printable-receipt">
         <div class="receipt-header">
-          <div class="receipt-gym-name">Fitness Club Tarsadi</div>
+          <div class="receipt-gym-name">J3 Fitness Studio</div>
           <div class="receipt-gym-sub">Fitness Club · Kosamba, Gujarat</div>
         </div>
         <div class="receipt-number">
@@ -372,7 +372,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <span class="receipt-total-value">${formatCurrency(p.amount)}</span>
         </div>
         <div class="receipt-footer-text">
-          Thank you for being a valued member of Fitness Club Tarsadi.<br>
+          Thank you for being a valued member of J3 Fitness Studio.<br>
           <span style="font-size:10px; color:#A1A1AA;">Demo Receipt — Not a legally binding document in this phase.</span>
         </div>
       </div>

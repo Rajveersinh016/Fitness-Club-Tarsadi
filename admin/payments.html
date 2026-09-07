@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex">
-  <title>Payments | Fitness Club Tarsadi Admin</title>
+  <title>Payments | J3 Fitness Studio Admin</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/admin.css">
   <link rel="stylesheet" href="../css/responsive.css">
@@ -16,7 +16,7 @@
     <div class="sidebar-logo">
       <div class="sidebar-logo-icon">G</div>
       <div>
-        <div class="sidebar-logo-text">FITNESS CLUB TARSADI</div>
+        <div class="sidebar-logo-text">J3 FITNESS STUDIO</div>
         <div class="sidebar-logo-sub">Admin Panel</div>
       </div>
     </div>
@@ -240,11 +240,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!p || !m) return;
     document.getElementById('receipt-content').innerHTML = `
       <div class="receipt-preview">
-        <div class="receipt-header"><div class="receipt-gym-name">Fitness Club Tarsadi</div><div class="receipt-gym-sub">Fitness Club · Kosamba, Gujarat</div></div>
+        <div class="receipt-header"><div class="receipt-gym-name">J3 Fitness Studio</div><div class="receipt-gym-sub">Fitness Club · Kosamba, Gujarat</div></div>
         <div class="receipt-number"><span class="receipt-number-label">Receipt Number</span><span class="receipt-number-value">${p.id}</span></div>
         ${[['Member Name', m.name], ['Member ID', m.id], ['Plan', p.plan], ['Date', formatDate(p.date)], ['Method', p.method], ['Reference', p.reference || '—']].map(([l, v]) => `<div class="receipt-field"><span class="receipt-field-label">${l}</span><span class="receipt-field-value">${v}</span></div>`).join('')}
         <div class="receipt-total"><span class="receipt-total-label">Amount Paid</span><span class="receipt-total-value">${formatCurrency(p.amount)}</span></div>
-        <div class="receipt-footer-text">Thank you for being a valued member of Fitness Club Tarsadi.<br><span style="font-size:10px; color:#A1A1AA;">Demo Receipt — Not a legally binding document in this phase.</span></div>
+        <div class="receipt-footer-text">Thank you for being a valued member of J3 Fitness Studio.<br><span style="font-size:10px; color:#A1A1AA;">Demo Receipt — Not a legally binding document in this phase.</span></div>
       </div>`;
     openModal('receipt-modal');
   };
